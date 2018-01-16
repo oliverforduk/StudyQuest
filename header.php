@@ -10,32 +10,4 @@ session_start();
 </head>
 <body>
 
-<header>
-	<nav>
-		<div class="main-wrapper">
-			<ul>
-				<li><a href="index.php">Home</a></li>
-			</ul>
-			<div class="nav-login">
-				<?php
-					if(isset($_SESSION['email'])){
-						echo '<form action="includes/logout.php" method="POST">
-					<button type="submit" name="submit">Logout</button>
-				</form>';
-					} else{
-						echo '<form action="includes/login.php" method="POST">
-								<input type="text" name="email" placeholder="Email">
-					
-								<input type="password" name="password" placeholder="Password">
-					
-								<button type="submit" name="submit">Login</button>
-							</form>';
-					}
-				
-				?>
-				
-				<a href="register.php">Sign up</a>
-			</div>
-		</div>
-	<nav>
-</header>
+<!-- nav bar goes here -->
