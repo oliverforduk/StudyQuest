@@ -4,6 +4,7 @@ $(function() {
 
         var $panel = $(this).closest('.tab-panels');
 
+		//switches active form current tab to selected tab
         $panel.find('.tabs li.active').removeClass('active');
         $(this).addClass('active');
 

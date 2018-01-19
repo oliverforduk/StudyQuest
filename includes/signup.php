@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if(isset($_POST['submit'])){
 	
@@ -10,15 +11,15 @@ if(isset($_POST['submit'])){
 	//Error handlers
 	//check for empty fields
 	if (empty($email || $password)){
-		
-		header("Location: ../register.php?signup=emptyfields");
+		$_SESSION['errorMessage'] = "Please fill out form before submitting.";
+		header("Location: ../index.php?signup=emptyfields");
 		exit();
 	} else{
 		
 		//checks email is valid
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-			
-			header("Location: ../register.php?signup=invalidemail");
+			$_SESSION['errorMessage'] = "Invalid email address.";
+			header("Location: ../index.php?signup=invalidemail");
 			exit();
 		} else {
 			
@@ -27,7 +28,8 @@ if(isset($_POST['submit'])){
 			$emailcheck = mysqli_num_rows($result);
 			
 			if($emailcheck > 0){
-				header("Location: ../register.php?register=existingemail");
+				$_SESSION['errorMessage'] = "This email is already in use.";
+				header("Location: ../index.php?index=existingemail");
 				exit();
 			} else{
 				
@@ -37,6 +39,10 @@ if(isset($_POST['submit'])){
 				//Insert details into database
 				$sql = "INSERT INTO UserAccount (email, password) VALUES ('$email', '$hashpassword');";
 				$result = mysqli_query($conn, $sql);
+				
+				//updating a confirmation message
+				$_SESSION['successMessage'] = "Account created, please sign in.";
+				
 				header("Location: ../index.php?signup=success");
 				exit();
 				

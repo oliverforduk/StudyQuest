@@ -5,6 +5,7 @@
 <! DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login | Register</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -39,6 +40,24 @@
 								
 									<button type="submit" name="submit">Login</button>
 								</div>
+								<!-- Error Message -->
+								<?php
+								if(isset($_SESSION['errorMessage'])){
+									echo 	'
+												<div class="errormessage">
+													<p>' . $_SESSION['errorMessage'] . '</p>
+												</div>
+											';
+									unset($_SESSION['errorMessage']);
+								} elseif (isset($_SESSION['successMessage'])){
+									echo 	'
+												<div class="successmessage">
+													<p>' . $_SESSION['successMessage'] . '</p>
+												</div>
+											';
+									unset($_SESSION['successMessage']);
+								}
+								?>
 							</form>
 					</div>
 				</div>
@@ -57,11 +76,13 @@
 							
 								<p class="label">Password</p>
 								<input type="password" name="password" placeholder="Password">
+								
+								<!--<p class="label">Confirm password</p>
+								<input type="password" name="passwordConfirm" placeholder="Confirm password">-->
 							
 								<button type="submit" name="submit">Sign Up</button>
-							</div
+							</div>
 						</form>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -69,5 +90,6 @@
 </div>
 
 <?php
+unset($_SESSION['testvar']);
 	include_once 'footer.php';
 ?>

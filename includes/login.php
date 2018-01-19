@@ -13,7 +13,8 @@ if(isset($_POST['submit'])){
 	//Check for empty fields
 	if(empty($email) || empty($password)){
 		
-		header("Location: ../index.php?login=emptyfields");
+		header("Location: ../index.php?login=error");
+		$_SESSION['errorMessage'] = "Please fill out form before submitting.";
 		exit();
 	} else{
 		
@@ -23,7 +24,8 @@ if(isset($_POST['submit'])){
 		
 		if($emailcheck < 1){
 			
-			header("Location: ../index.php?login=error1");
+			header("Location: ../index.php?login=error");
+			$_SESSION['errorMessage'] = "This account does not exist.";
 			exit();
 		} else{
 			
@@ -32,7 +34,8 @@ if(isset($_POST['submit'])){
 				//Dehash password and check
 				$hashpasswordcheck = password_verify($password, $row['password']);
 				if($hashpasswordcheck == false){
-					header("Location: ../index.php?login=error2");
+					header("Location: ../index.php?login=error");
+					$_SESSION['errorMessage'] = "Email and password do not match.";
 					exit();
 				} elseif ($hashpasswordcheck == true){
 					

@@ -6,9 +6,12 @@
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* Background colour*/
+/* Background image*/
 body{
-	background: rgb(108, 108, 250);
+	background-image: url(../images/fl.jpg);
+	background-size: cover;
+    background-attachment: fixed;
+    background-position: bottom center; 
 }
 
 /* Form styling */
@@ -19,14 +22,20 @@ body{
 	transform: translate(-50%, -50%);
 	width: 300px;
 	height: 370px;
-	background: #fff;
+	background-color: rgba(0,0,0, 0.8);
+	color: #fff;
+}
+
+.form register-form{
+	height: 500px;
 }
 
 /*appname*/
 .appname{
 	width: 100%;
 	height: 55px;
-	background: #666;
+	/*background: #27ae60;*/
+	background: #0096D5;
 }
 
 .appname h2{
@@ -46,19 +55,26 @@ body{
 	width: 40%;
     list-style-type: none;
     display: inline-block;
-    background: #999;
+	/*background: #2ecc71;*/
+	background: #80CCEB;
+	/*background: #27ae60;*/
     padding: 5px 10px;
     color: #fff;
     cursor: pointer;
+	font-size: 18px;
+	transition: all 0.4s ease-in-out;
 }
 .tab-panels ul li:hover {
     color: #fff;
-    background: #666;
+	/*background: #27ae60;*/
+	background: #0096D5;
+	transform: all 1s;
 }
 
 .tab-panels ul li.active {
     color: #fff;
-    background: #666;
+	/*background: #27ae60;*/
+	background: #0096D5;
 }
 
 
@@ -94,6 +110,8 @@ body{
 	height: 25px;
 	margin-top: 2px;
 	font-size: 18px;
+	color: #fff;
+	background: transparent;
 }
 
 /*used to center things*/
@@ -103,8 +121,8 @@ body{
 
 /* form focus = what user is currently selecting */
 .form .body .form-row input:focus{
-	border-bottom: 2px solid rgb(34, 205, 205);
-	transition: all .2s ease-in-out;
+	border-bottom: 2px solid rgb(255, 255, 255);
+	transition: all .4s ease-in-out;
 }
 
 /*form submit button styling */
@@ -112,7 +130,8 @@ body{
 	width: 80%;
 	border: none;
 	outline: none;
-	background-color: #666;
+	/*background: #27ae60;*/
+	background: #0096D5;
 	margin-top: 20px;
 	height: 45px;
 	text-transform: uppercase;
@@ -121,6 +140,35 @@ body{
 	cursor: pointer;
 }
 
+/*error & success message styling*/
+.errormessage {
+	margin-top: 30px;
+	/*background-color: #e74c3c;*/
+	background-color: #0096D5;
+	width: 100%;
+	height: 28px;
+	text-align: center;
+}
+
+.errormessage p{
+	font-size: 18px;
+	color: white;
+	padding-top: 2px;
+}
+
+.successmessage {
+	margin-top: 30px;
+	background-color: #27ae60;
+	width: 100%;
+	height: 28px;
+	text-align: center;
+}
+
+.successmessage p{
+	font-size: 18px;
+	color: #fff;
+	padding-top: 2px;
+}
 
 /*seting visability for tabs*/
 .tab-panels .panel {
