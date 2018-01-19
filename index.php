@@ -9,9 +9,9 @@
 	<title>Login | Register</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="javascript/tabswitch.js"></script>
+	<script src="javascript/javascript.js"></script>
 </head>
-<body>
+<body onLoad="buttonanim()">
 
 <div class="tab-panels">
 	<div class="form">
@@ -20,25 +20,24 @@
 		</div>
 		<div class="holder">
 			<ul class="tabs">
-				<li rel="panel1" class="active">Login</li>
-				<li rel="panel2">Sign up</li>
+				<li class="active">Login</li>
+				<a href="register.php"><li>Sign up</li></a>
 			<ul>
 		</div>
-		
-		<div id="panel1" class="panel active">
+
 			<div class="body" id="form-body">
-				<div class="login">
 					<div class="form-row">
 						<h2 class="formmessage">Please log in</h2>
-							<form action="includes/login.php" method="POST">
+							<form action="includes/login.php" id="login-form" method="POST">
 								<div class="holder">
 									<p class="label">Email</p>
 									<input type="text" name="email" placeholder="you@example.com">
 									
 									<p class="label">Password</p>
 									<input type="password" name="password" placeholder="Password">
-								
-									<button type="submit" name="submit">Login</button>
+								</div>
+								<div class="holder">
+									<button type="submit" name="submit" id="subbutton" class="buttonspin">Login</button>
 								</div>
 								<!-- Error Message -->
 								<?php
@@ -60,36 +59,11 @@
 								?>
 							</form>
 					</div>
-				</div>
 			</div>
-		</div>
 		
-		<div id="panel2" class="panel">
-		<div class="body" id="form-body">
-			<div class="register">
-				<div class="form-row">
-					<h2 class="formmessage">Create an account</h2>
-						<form class="register-form" action="includes/signup.php" method="POST">
-							<div class="holder">
-								<p class="label">Email</p>
-								<input type="text" name="email" placeholder="you@example.com">
-							
-								<p class="label">Password</p>
-								<input type="password" name="password" placeholder="Password">
-								
-								<!--<p class="label">Confirm password</p>
-								<input type="password" name="passwordConfirm" placeholder="Confirm password">-->
-							
-								<button type="submit" name="submit">Sign Up</button>
-							</div>
-						</form>
-			</div>
-		</div>
-	</div>
-	</div>
+</div>
 </div>
 
 <?php
-unset($_SESSION['testvar']);
 	include_once 'footer.php';
 ?>

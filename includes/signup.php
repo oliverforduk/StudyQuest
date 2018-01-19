@@ -12,14 +12,14 @@ if(isset($_POST['submit'])){
 	//check for empty fields
 	if (empty($email || $password)){
 		$_SESSION['errorMessage'] = "Please fill out form before submitting.";
-		header("Location: ../index.php?signup=emptyfields");
+		header("Location: ../register.php?signup=emptyfields");
 		exit();
 	} else{
 		
 		//checks email is valid
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 			$_SESSION['errorMessage'] = "Invalid email address.";
-			header("Location: ../index.php?signup=invalidemail");
+			header("Location: ../register.php?signup=invalidemail");
 			exit();
 		} else {
 			
@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
 			
 			if($emailcheck > 0){
 				$_SESSION['errorMessage'] = "This email is already in use.";
-				header("Location: ../index.php?index=existingemail");
+				header("Location: ../register.php?index=existingemail");
 				exit();
 			} else{
 				
