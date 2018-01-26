@@ -6,8 +6,9 @@
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+/*--------------------------------------------------LOGIN/REGISTER PAGES------------------------------------------------------*/
 /* Background image*/
-body{
+.bodyindex{
 	background-image: url(../images/fl.jpg);
 	background-size: cover;
     background-attachment: fixed;
@@ -17,20 +18,24 @@ body{
 /* Form styling */
 .form{
 	position: absolute;
-	top: 50%;
+	top: 45%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 300px;
-	height: 370px;
-	background-color: rgba(0,0,0, 0.8);
+	height: 375px;
+	background-color: rgba(0,0,0, 0.80);
 	color: #fff;
+	border: solid black 2px;
+	border-top: solid #5e147d 2px;
 }
 
 /*appname*/
 .appname{
 	width: 100%;
 	height: 55px;
-	background: #0096D5; /*dark blue*/
+	/*background: #0096D5; /*dark blue*/
+	background: #5e147d;
+	border-left: solid #5e147d 2px;
 }
 
 .appname h2{
@@ -50,7 +55,8 @@ body{
 	width: 40%;
     list-style-type: none;
     display: inline-block;
-	background: #0096D5;
+	/*background: #0096D5;*/
+	background: #5e147d;
     padding: 5px 10px;
     color: #fff;
     cursor: pointer;
@@ -59,12 +65,15 @@ body{
 }
 .tab-panels ul li:hover {
     color: #fff;
-	background: #80CCEB; /*light blue*/
+	/*background: #80CCEB; /*light blue*/
+	background: #9b59b6;
 }
 
 .tab-panels ul li.active {
     color: #fff;
-	background: #80CCEB; /*dark blue*/
+	/*background: #80CCEB; /*light blue*/
+	background: #9b59b6;
+	border-bottom: solid black 2px;
 }
 
 
@@ -120,7 +129,8 @@ body{
 	width: 80%;
 	border: none;
 	outline: none;
-	background: #0096D5;
+	/*background: #0096D5; /*dark blue*/
+	background: #5e147d; /*dark purple*/
 	margin-top: 20px;
 	height: 45px;
 	text-transform: uppercase;
@@ -135,7 +145,9 @@ body{
 	width: 45px;;
 	border: none;
 	outline: none;
-	background: #0096D5;
+	/*background: #0096D5; /*dark blue*/
+	/*background: #5e147d; /*dark purple*/
+	background: #7e349d; /*middle purple*/
 	margin-top: 20px;
 	height: 45px;
 	text-transform: uppercase;
@@ -149,7 +161,9 @@ body{
 	width: 45px;;
 	border: none;
 	outline: none;
-	background: #0096D5;
+	/*background: #0096D5; /*dark blue*/
+	/*background: #5e147d; /*dark purple*/
+	background: #7e349d; /*middle purple*/
 	margin-top: 20px;
 	height: 45px;
 	text-transform: uppercase;
@@ -170,18 +184,19 @@ body{
 }
 
 .form .body .form-row button:hover{
-	background: #80CCEB;
+	/*background: #80CCEB; /*light blue*/
+	background: #9b59b6;
 	transition: all .4s ease-in-out;
 }
 
 /*error & success message styling*/
 .errormessage {
 	margin-top: 30px;
-	/*background-color: #e74c3c;*/
-	background-color: #0096D5;
+	background-color: #D73C2C;
 	width: 100%;
 	height: 28px;
 	text-align: center;
+	border: solid black 1px;
 }
 
 .errormessage p{
@@ -192,10 +207,11 @@ body{
 
 .successmessage {
 	margin-top: 30px;
-	background-color: #27ae60;
+	background-color: #007c21;
 	width: 100%;
 	height: 28px;
 	text-align: center;
+	border: solid black 1px;
 }
 
 .successmessage p{
@@ -213,5 +229,13 @@ body{
     display:block;
 }
 
+/*--------------------------------------------------------NAVBAR HEADER--------------------------------------------------------*/
+.header{
 
+}
 
+.navbar{
+
+}
+
+/*--------------------------------------------------------PROFILE--------------------------------------------------------------*/

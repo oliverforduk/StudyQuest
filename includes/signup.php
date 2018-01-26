@@ -11,8 +11,8 @@ if(isset($_POST['submit'])){
 	//Error handlers
 	//check for empty fields
 	if (empty($email || $password)){
-		$_SESSION['errorMessage'] = "Please fill out form before submitting.";
-		header("Location: ../register.php?signup=emptyfields");
+		$_SESSION['errorMessage'] = "Please complete form.";
+		header("Location: ../register.php");
 		exit();
 	} else{
 		
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
 			$emailcheck = mysqli_num_rows($result);
 			
 			if($emailcheck > 0){
-				$_SESSION['errorMessage'] = "This email is already in use.";
+				$_SESSION['errorMessage'] = "Email already in use.";
 				header("Location: ../register.php?index=existingemail");
 				exit();
 			} else{

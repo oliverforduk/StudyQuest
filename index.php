@@ -1,5 +1,9 @@
 <?php
 	session_start();
+if(isset($_SESSION['userId'])){
+	header("Location: profile.php");
+	exit();
+} else {
 ?>
 
 <! DOCTYPE html>
@@ -11,7 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="javascript/javascript.js"></script>
 </head>
-<body onLoad="buttonanim()">
+<body class="bodyindex" onLoad="buttonanim()">
 
 <div class="tab-panels">
 	<div class="form">
@@ -66,4 +70,5 @@
 
 <?php
 	include_once 'footer.php';
+}
 ?>

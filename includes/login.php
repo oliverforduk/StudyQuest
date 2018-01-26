@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
 	if(empty($email) || empty($password)){
 		
 		header("Location: ../index.php?login=error");
-		$_SESSION['errorMessage'] = "Please fill out form before submitting.";
+		$_SESSION['errorMessage'] = "Please complete form.";
 		exit();
 	} else{
 		
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
 		if($emailcheck < 1){
 			
 			header("Location: ../index.php?login=error");
-			$_SESSION['errorMessage'] = "This account does not exist.";
+			$_SESSION['errorMessage'] = "Account does not exist.";
 			exit();
 		} else{
 			
