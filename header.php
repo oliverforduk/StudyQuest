@@ -16,7 +16,7 @@
 		<div class="navbar">
 			<ul>
 				<a href="profile.php"><li>Characers</li></a>
-				<a href=""><li>Tasks</li></a>
+				<a href="options.php"><li>Options</li></a>
 			</ul>
 			
 			<form action="includes/logout.php" method="POST">

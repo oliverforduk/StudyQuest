@@ -7,28 +7,30 @@ if(!isset($_POST['submit'])){
 }else{
 	
 	include_once 'dbConnect.php';
-	
+
+//setting vars for inputting into TaskTable & TaskDetails	
 	$characterId = $_SESSION['charSelect'];
+	$userId = $_SESSION['userId'];
 	
 	$taskName = mysqli_real_escape_string($conn, $_POST['taskName']);
 	$taskDate = mysqli_real_escape_string($conn, $_POST['taskDate']);
 	$taskDifficulty = mysqli_real_escape_string($conn, $_POST['taskDifficulty']);
 	$taskPriority = mysqli_real_escape_string($conn, $_POST['taskPriority']);
 	
-	if (empty($taskName || $taskDate)){
+	if (empty($taskName) || empty($taskDate)){
 		$_SESSION['errorMessage'] = "Please complete form.";
 		header("Location: ../charView.php?incompleteform");
 		exit();
 		
 	} else{
 		//adding to TaskTable
-		$sql = "INSERT INTO TaskTable (characterId, taskName) VALUES ('$characterId', '$taskName');";
-		$result = mysqli_query($conn, $sql);
+		$sql = "INSERT INTO TaskTable (userId, characterId, taskName) VALUES ('$userId', '$characterId', '$taskName');";
+		mysqli_query($conn, $sql);
 		
 		$id = mysqli_insert_id($conn);
 		
 		$sql = "INSERT INTO TaskDetails (taskId, deadline, difficulty, priority) VALUES ('$id', '$taskDate', '$taskDifficulty', '$taskPriority');";
-		$result = mysqli_query($conn, $sql);
+		mysqli_query($conn, $sql);
 		
 		//updating a confirmation message
 		$_SESSION['successMessage'] = "Task added.";

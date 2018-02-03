@@ -23,11 +23,11 @@ if(!isset($_SESSION['userId'])){
 		echo "Your characters:";
 		echo "<br/>";
 		echo "<br/>";
-		$count = 1;
+
+//loops thru each character id that belongs to logged in user		
+		while($row = mysqli_fetch_assoc($result)){	
 		
-		while($row = mysqli_fetch_assoc($result)){	//loops thru each character id that belongs to logged in user
-		
-			//selects characterId, characterName & build from CharacterTable/CharacterDetails that match each characterId belonging to user
+//selects characterId, characterName & build from CharacterTable/CharacterDetails that match each characterId belonging to user
 			$sql2 = "
 			SELECT CharacterTable.characterId, CharacterTable.characterName, CharacterDetails.build, CharacterDetails.characterLevel, CharacterDetails.currentHp, CharacterDetails.xp
 			FROM CharacterTable LEFT JOIN CharacterDetails 
@@ -36,10 +36,10 @@ if(!isset($_SESSION['userId'])){
 			";
 			$result2 = mysqli_query($conn, $sql2);
 			
-			echo "Character " . $count . ":";
 			$count++;
+			echo "Character " . $count . ":";
 		
-			//loop will output details of character in table
+//loop will output details of character in table
 			while($row2 = mysqli_fetch_assoc($result2)){
 				echo "<table align='center' border='1'>";
 			echo "<tr>

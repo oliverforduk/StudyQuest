@@ -1,4 +1,5 @@
 /*Animation for spinning/ expanding button*/
+
 function buttonanim(){
 
 	setTimeout(function(){
