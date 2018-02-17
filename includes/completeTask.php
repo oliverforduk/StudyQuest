@@ -3,11 +3,16 @@ session_start();
 
 include_once 'dbConnect.php';
 
+//Task is selected by POST if it has been selected, if not session is picked up by automatic overdue check
+if(isset($_POST['taskSelect'])){
+	$_SESSION['taskSelect'] = $_POST['taskSelect'];
+}
+
 //Selects the task attributes of the selected task
 	$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
 			FROM TaskTable LEFT JOIN TaskDetails 
 			ON TaskTable.taskId = TaskDetails.taskId
-			WHERE TaskTable.taskId = '". $_POST['taskSelect'] . "';";
+			WHERE TaskTable.taskId = '". $_SESSION['taskSelect'] . "';";
 	$result = mysqli_query($conn, $sql);
 	
 //fetches the values of those attributes
@@ -93,6 +98,9 @@ include_once 'dbConnect.php';
 			SET coins = coins + '$coins'
 			WHERE userId = '$userId';";
 	mysqli_query($conn, $sql);
+	
+	//constructs a confirmation message using vars to output on character view page	
+	$_SESSION['messageConfirm'] = "Task: " . $taskName . ", Status: task completed within time, HP gained, XP gained: " . $xp . ", coins gained: " . $coins . ".";
 
 	}else{
 	//Task overdue
@@ -118,17 +126,20 @@ include_once 'dbConnect.php';
 		}
 	}
 	
+	//constructs a confirmation message using vars to output on character view page	
+	$_SESSION['messageConfirm'] = "Task: " . $taskName . ", Status: task not completed on time, HP lost, XP gained: 0, coins gained: 0.";
+	
 	}
+	
+//Updates the task log
+	$_SESSION['taskLog'] = $_SESSION['messageConfirm'] . "<br/>" . $_SESSION['taskLog'];
 	
 //Updates task (status)
 	$sql = "UPDATE TaskDetails
 			SET status = 'closed'
 			WHERE taskId = '$taskId';";
 	mysqli_query($conn, $sql);
-
-//constructs a confirmation message using vars to output on character view page	
-	
-	
+		
 //Sends user back to character view page
 header("Location: ../charView.php");
 exit();

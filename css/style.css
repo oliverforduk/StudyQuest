@@ -129,7 +129,6 @@
 	width: 80%;
 	border: none;
 	outline: none;
-	/*background: #0096D5; /*dark blue*/
 	background: #5e147d; /*dark purple*/
 	margin-top: 20px;
 	height: 45px;
@@ -139,14 +138,15 @@
 	cursor: pointer;
 	transition: all 0.5s ease-in-out;
 	overflow: hidden;
+	/*test*/
+	border: solid black 2px;
+	border-top: solid #5e147d 2px;
 } 
 
 .form .body .form-row .buttonsquare{
-	width: 45px;;
+	width: 45px;
 	border: none;
 	outline: none;
-	/*background: #0096D5; /*dark blue*/
-	/*background: #5e147d; /*dark purple*/
 	background: #7e349d; /*middle purple*/
 	margin-top: 20px;
 	height: 45px;
@@ -154,15 +154,15 @@
 	color: transparent;
 	font-size: 22px;
 	cursor: pointer;
-	overflow: hidden
+	overflow: hidden;
+	/*test*/
+	border: solid black 2px;
 } 
 
 .form .body .form-row .buttonspin{
-	width: 45px;;
+	width: 45px;
 	border: none;
 	outline: none;
-	/*background: #0096D5; /*dark blue*/
-	/*background: #5e147d; /*dark purple*/
 	background: #7e349d; /*middle purple*/
 	margin-top: 20px;
 	height: 45px;
@@ -171,7 +171,14 @@
 	font-size: 22px;
 	cursor: pointer;
 	animation: rotating 1s 0.25s linear infinite;
+	/*test*/
+	border: solid black 2px;	
 } 
+
+.form .body .form-row button:hover{
+	/*background: #80CCEB; /*light blue*/
+	background: #9b59b6;
+}
 
 /*button spin animation*/
 @keyframes rotating {
@@ -181,12 +188,6 @@
   to {
     transform: rotate(-360deg);
   }
-}
-
-.form .body .form-row button:hover{
-	/*background: #80CCEB; /*light blue*/
-	background: #9b59b6;
-	transition: all .4s ease-in-out;
 }
 
 /*error & success message styling*/

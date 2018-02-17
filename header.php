@@ -17,6 +17,8 @@
 			<ul>
 				<a href="profile.php"><li>Characers</li></a>
 				<a href="options.php"><li>Options</li></a>
+				<a href="store.php"><li>Store</li></a>
+				<a href="info.php"><li>Tutorial</li></a>
 			</ul>
 			
 			<form action="includes/logout.php" method="POST">

@@ -7,7 +7,76 @@ if(!isset($_SESSION['userId'])){
 } else{
 
 	include 'includes/dbConnect.php';
+	
+	//If user has no characters redirect to info.php
+	$sql = "SELECT characterId
+			FROM CharacterTable
+			WHERE userId = '" . $_SESSION['userId'] . "';";
+	$result = mysqli_query($conn, $sql);
+	
+		if($numrows = mysqli_num_rows($result) < 1){
+			header("Location: info.php");
+			exit();
+		}
+	
 	include_once 'header.php';
+	
+	//Message runs first time a user logs in only
+	if(isset($_SESSION['taskCheck'])){
+		unset($_SESSION['taskCheck']);
+		
+		$userId = $_SESSION['userId'];
+		$todayDate = date("Y-m-d");
+		
+	//selects tasks that both belong to current user and overdue
+		$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline
+				FROM TaskTable LEFT JOIN TaskDetails 
+				ON TaskTable.taskId = TaskDetails.taskId
+				WHERE TaskTable.userId = '$userId' AND TaskDetails.deadline < '$todayDate' AND TaskDetails.status = 'open';";
+		$result = mysqli_query($conn, $sql);
+	
+	//selects tasks that both belong to current user and are due today
+		$sql2 = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline
+				FROM TaskTable LEFT JOIN TaskDetails 
+				ON TaskTable.taskId = TaskDetails.taskId
+				WHERE TaskTable.userId = '$userId' AND TaskDetails.deadline = '$todayDate' AND TaskDetails.status = 'open';";
+		$result2 = mysqli_query($conn, $sql2);
+	
+	//output table
+		echo "<table border ='1'>";
+		echo "<th>Overdue tasks</th>";
+	//loop for overdue tasks
+	if($numrows = mysqli_num_rows($result) < 1){
+		echo "<tr><td>No overdue tasks.</td></tr>";
+	}else{
+		while($row = mysqli_fetch_assoc($result)){
+			echo "<tr>
+					<td>" . $row['taskName'] . "</td>
+					<td>" . $row['deadline'] . "</td>";
+					echo '	<td><form action="charView.php" method="POST">
+							<button type = "submit" name="charSelect" value="'.$row['characterId'].'">See Task</button></a>
+							</form></td></tr>';
+		}
+	}
+		
+	//loop for todays tasks
+		echo "<th>Todays tasks</th>";
+		
+	if($numrows = mysqli_num_rows($result2) < 1){
+		echo "<tr><td>No tasks due today.</td></tr>";
+	}else{	
+		while($row = mysqli_fetch_assoc($result2)){
+			echo "<tr>
+					<td>" . $row['taskName'] . "</td>
+					<td>" . $row['deadline'] . "</td>";
+					echo '	<td><form action="charView.php" method="POST">
+							<button type = "submit" name="charSelect" value="'.$row['characterId'].'">See Task</button></a>
+							</form></td></tr>';
+		}
+	}
+		
+		echo "<tr><td><button onclick='window.location.reload(true);'>Dismiss</button></td></tr>";
+	}
 		
 	//selects characterids that belong to the logged in user	
 	$sql = "

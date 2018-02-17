@@ -42,6 +42,8 @@ if(isset($_POST['submit'])){
 					//log in user
 					$_SESSION['userId'] = $row['userId'];
 					$_SESSION['email'] = $row['email'];
+					//Variable used to run taskCheck.php the first time a user logs in
+					$_SESSION['taskCheck'] = true;
 					header("Location: ../profile.php?login=success");
 					exit();
 				}

@@ -11,48 +11,76 @@ if(!isset($_SESSION['charSelect'])){
 	header("Location: profile.php");
 	exit();
 }else{
+//Automatically processes tasks that are overdue
+include 'includes/dbConnect.php';
 
-	include 'includes/dbConnect.php';
-	include_once 'header.php';
-
-//selects the character attributes of the selected character using characterId passed from profile.php using form
-		$sql = "SELECT CharacterTable.characterId, CharacterTable.characterName, CharacterDetails.build, CharacterDetails.characterLevel, CharacterDetails.currentHp, CharacterDetails.xp
-				FROM CharacterTable LEFT JOIN CharacterDetails 
-				ON CharacterTable.characterId = CharacterDetails.characterId
-				WHERE CharacterTable.characterId = '". $_SESSION['charSelect'] . "';";
-		$result = mysqli_query($conn, $sql);
-
-//character table output
-		while($row = mysqli_fetch_assoc($result)){
-			
-			$currentHp = $row['currentHp'];
-			
-			echo "<table align='center' border='1'>";
-			echo "<tr>
-				<th width='180' align='left'>Character Name</th>
-				<th width='180' align='left'>Character Build</th>
-				<th width='180' align='left'>Character Level</th>
-				<th width='180' align='left'>Character HP</th>
-				<th width='180' align='left'>Character XP</th></tr>";
-
-			echo "<tr>";
-			echo "<td>" . $row['characterName'] . "</td>";
-			echo "<td>" . $row['build'] . "</td>";
-			echo "<td>" . $row['characterLevel'] . "</td>";
-			echo "<td>" . $row['currentHp'] . "</td>";
-			echo "<td>" . $row['xp'] . "</td>";
-					
-			echo "</tr>";
-			echo "</table>";
-		}
-		
-//selects the tasks tied to the selected character
-		$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
+$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
 				FROM TaskTable LEFT JOIN TaskDetails 
 				ON TaskTable.taskId = TaskDetails.taskId
 				WHERE TaskTable.characterId = '". $_SESSION['charSelect'] . "' AND TaskDetails.status = 'open'
 				ORDER BY TaskDetails.priority ASC;";
-		$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
+
+while($overdueCheck = mysqli_fetch_assoc($result)){
+	$todayDate = date("Y-m-d");
+	$taskDate = $overdueCheck['deadline'];
+	$task = $overdueCheck['taskId'];
+if($todayDate > $taskDate){
+			$_SESSION['taskSelect'] = $task;
+			header("Location: includes/completeTask.php");
+			exit();
+		}
+}
+
+
+	include_once 'header.php';
+	
+//Displays confirmation message if a task has been completed
+	if(isset($_SESSION['messageConfirm'])){
+		echo "Last completed Task:";
+		echo "<br/>";
+		echo $_SESSION['messageConfirm'];
+		unset($_SESSION['messageConfirm']);
+	}
+
+//selects the character attributes of the selected character using characterId passed from profile.php using form
+	$sql = "SELECT CharacterTable.characterId, CharacterTable.characterName, CharacterDetails.build, CharacterDetails.characterLevel, CharacterDetails.currentHp, CharacterDetails.xp
+			FROM CharacterTable LEFT JOIN CharacterDetails 
+			ON CharacterTable.characterId = CharacterDetails.characterId
+			WHERE CharacterTable.characterId = '". $_SESSION['charSelect'] . "';";
+	$result = mysqli_query($conn, $sql);
+
+//character table output
+	while($row = mysqli_fetch_assoc($result)){
+			
+		$currentHp = $row['currentHp'];
+			
+		echo "<table align='center' border='1'>";
+		echo "<tr>
+			<th width='180' align='left'>Character Name</th>
+			<th width='180' align='left'>Character Build</th>
+			<th width='180' align='left'>Character Level</th>
+			<th width='180' align='left'>Character HP</th>
+			<th width='180' align='left'>Character XP</th></tr>";
+
+		echo "<tr>";
+		echo "<td>" . $row['characterName'] . "</td>";
+		echo "<td>" . $row['build'] . "</td>";
+		echo "<td>" . $row['characterLevel'] . "</td>";
+		echo "<td>" . $row['currentHp'] . "</td>";
+		echo "<td>" . $row['xp'] . "</td>";
+					
+		echo "</tr>";
+		echo "</table>";
+	}
+		
+//selects the tasks tied to the selected character
+	$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
+				FROM TaskTable LEFT JOIN TaskDetails 
+				ON TaskTable.taskId = TaskDetails.taskId
+				WHERE TaskTable.characterId = '". $_SESSION['charSelect'] . "' AND TaskDetails.status = 'open'
+				ORDER BY TaskDetails.priority ASC;";
+	$result = mysqli_query($conn, $sql);
 
 		echo "Tasks for this character:";
 
@@ -114,7 +142,10 @@ if(!isset($_SESSION['charSelect'])){
 	</form>
 	
 <?php
-
+	echo "Session Task Log:";
+	echo "<br/>";
+	echo $_SESSION['taskLog'];
+	
 	}else{
 		echo "Tasks cannot be added to a character with no HP.";
 	}
