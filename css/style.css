@@ -33,7 +33,6 @@
 .appname{
 	width: 100%;
 	height: 55px;
-	/*background: #0096D5; /*dark blue*/
 	background: #5e147d;
 	border-left: solid #5e147d 2px;
 }
@@ -43,6 +42,7 @@
 	text-align: center;
 	font-size: 30px;
 	padding-top: 10px;
+	font-weight: lighter;
 }
 
 /* form tab styling */
@@ -55,7 +55,6 @@
 	width: 40%;
     list-style-type: none;
     display: inline-block;
-	/*background: #0096D5;*/
 	background: #5e147d;
     padding: 5px 10px;
     color: #fff;
@@ -65,13 +64,11 @@
 }
 .tab-panels ul li:hover {
     color: #fff;
-	/*background: #80CCEB; /*light blue*/
 	background: #9b59b6;
 }
 
 .tab-panels ul li.active {
     color: #fff;
-	/*background: #80CCEB; /*light blue*/
 	background: #9b59b6;
 	border-bottom: solid black 2px;
 }
@@ -115,6 +112,7 @@
 
 /*used to center things*/
 .holder{
+	width: 100%;
 	text-align: center;
 }
 
@@ -176,7 +174,6 @@
 } 
 
 .form .body .form-row button:hover{
-	/*background: #80CCEB; /*light blue*/
 	background: #9b59b6;
 }
 
@@ -221,22 +218,349 @@
 	padding-top: 2px;
 }
 
-/*seting visability for tabs*/
-.tab-panels .panel {
-    display:none;
-}
-
-.tab-panels .panel.active {
-    display:block;
-}
-
 /*--------------------------------------------------------NAVBAR HEADER--------------------------------------------------------*/
+
+/*Dimentions/background of header*/
 .header{
+	width: 1100px;
+	height: 180px;
+	background-image: url(../images/Header4.png);
+}
+
+.centered {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/*Bar with app name (.appname styling found above)*/
+.header .appname{
+	height: 45px;
+}
+
+.header .appname h2{
+	font-size: 30px;
+	padding-top: 5px;
+}
+
+/*Transparent back to the navbar*/
+.nav-back{
+	width: 550px;
+	height: 72px;
+	background-color: rgba(0,0,0, 0.80);
+	margin: 10px;
+}
+
+/*List items of the navbar*/
+.nav-tabs ul{
+	width: 100%;
+	padding-top: 8px;
+	padding-left: 8px;
+}
+
+.nav-tabs li{
+	width: 19%;
+	height: 56px;
+	line-height: 56px;
+    list-style-type: none;
+    display: inline-block;
+	text-align: center;
+	background: #5e147d;
+    color: #fff;
+    cursor: pointer;
+	transition: all 0.4s ease-in-out;
 
 }
 
-.navbar{
+.nav-tabs ul li:hover {
+    color: #fff;
+	background: #9b59b6;
+}
 
+/*First letter of each options*/
+.nav-tabs h2{
+	font-size: 30px;
+	font-weight: lighter;
+	display: inline-block;
+}
+
+/*Other letters of options*/
+.nav-tabs p{
+	font-size: 18px;
+	font-weight: lighter;
+	display: inline-block;
+}
+
+/*Used to keep page content below header*/
+.headerback{
+	padding-bottom: 190px;
+}
+
+/*--------------------------------------------------------TASKCHECK--------------------------------------------------------------*/
+
+/*Model background*/
+.overlay{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(0,0,0, 0.80);
+}
+
+/*Model window*/
+.taskcheckcontent{
+	background-color: #21072C; /*darker purple*/
+    margin-top: 200px;
+    border: 1px solid #5e147d;
+	border-top: 1px solid #5e147d;
+    width: 900px;
+	max-height: 600px;
+	overflow: auto;
+}
+
+.tasktitle{
+	width: 96%;
+	height: 30px;
+	background: #5e147d; /*dark purple*/
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 2%;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+}
+
+/*Displayed when there are no tasks*/
+.tasktext{
+	width: 90%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5%;
+	background: #fefefe; /*white*/
+	text-align: center;
+	padding-top: 8px;
+	color: black;
+	font-size: 16px;
+	border: solid #5e147d 1px;; /*dark purple*/
+}
+
+/*Tasks displayed*/
+.taskcheckcontent table{
+	width: 90%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5%;
+	background: #fefefe; /*white*/
+    border-collapse: collapse;
+    border: solid #5e147d 2px;
+	font-size: 18px;
+}
+
+.taskcheckcontent table:hover{
+	border: solid #9b59b6 2px;
+	background: #f5f5f5;
+	transition: all 0.5s ease-in-out;
+}
+
+/*Table data width setting*/
+td.tdimg{
+	width: 80px;
+}
+
+td.tdtask{
+	padding-top: 10px;
+	padding-left: 10px;
+	width: 525px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+td.tddate{
+	padding-right: 5px;
+}
+td.tdbutton{
+	width: 90px;
+}
+
+.taskcheckcontent form{
+	height: 40px;
+}
+
+.taskcheckcontent table button{
+	width: 100%;
+	height: 100%;
+	border: solid #5e147d;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.taskcheckcontent table button:hover{
+	background: #9b59b6;
+	border: solid #9b59b6;
+}
+
+/*Dismiss button*/
+.taskcheckcontent .taskbutton{
+	width: 40%;
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-left: 30%;
+	height: 45px;
+	text-transform: uppercase;
+	color: white;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	overflow: hidden;
+	border: solid black 1px;
+	border-top: solid #5e147d 1px;
+}
+
+.taskcheckcontent .taskbutton:hover{
+	background: #9b59b6;
+}
+
+/*--------------------------------------------------------PAGE DIMENTIONS--------------------------------------------------------------*/
+
+.profile{
+	width: 1020px;
+	height: 100%;
+}
+
+.title{
+	width: 1000px;
+	height: 45px;
+	background: #5e147d;
+	color: #fefefe;
+	text-align: center;
+	font-size: 28px;
+	font-weight: lighter;
+	padding-top: 5px;
+	margin-right: 10px;
+	margin-left: 10px;
 }
 
 /*--------------------------------------------------------PROFILE--------------------------------------------------------------*/
+
+/*Character output boxes*/
+.charholder{
+	width: 495px;
+	height: 275px;
+	margin-top: 10px;
+	margin-right: 10px;
+	background: #21072C;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: -4px;
+}
+
+.charhead{
+	width: 100%;
+	height: 45px;
+	background: #5e147d;
+	color: #fefefe;
+
+}
+
+.charhead h2{
+	display: inline-block;	
+	padding-top: 8px;
+	padding-left: 8px;
+	font-size: 26px;
+	font-weight: lighter;
+}
+
+.charhead .level{
+	display: inline-block;
+	float: right;
+	padding-right: 8px;
+}
+
+.charimg{
+	display: inline-block;
+	margin: 15px;
+	margin-right: -4px;
+	margin-bottom: 0px;
+}
+
+.charstats{
+	display: inline-block;
+	float: right;
+	color: #fefefe;
+	margin-top: 27px;
+	margin-right: 30px;
+}
+
+.hp{
+	width: 200px;
+	margin-left: 35px;
+	margin-bottom: 50px;
+}
+
+.xp{
+	width: 200px;
+	margin-left: 35px;
+	margin-bottom: 35px;
+}
+
+.charstats h2{
+	display: inline-block;
+}
+
+.charstats .level{
+	float: right;
+	font-weight: lighter;
+}
+
+.charbutton{
+
+}
+
+.charbutton .taskbutton{
+	width: 220px;
+	margin-left: 30px;
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	height: 45px;
+	color: white;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	overflow: hidden;
+	border: solid black 1px;
+	border-top: solid #5e147d 1px;
+}
+
+.charbutton .taskbutton:hover{
+	background: #9b59b6;
+}
+
+.charbutton2{
+	display: none;
+}
+.chartable{
+	display: none;
+}
+
+.createcharacter{
+	display: none;
+}
+
+/*--------------------------------------------------------CHARVIEW--------------------------------------------------------------*/
+
+.currenttable{
+	display: none;
+}

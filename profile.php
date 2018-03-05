@@ -14,7 +14,8 @@ if(!isset($_SESSION['userId'])){
 			WHERE userId = '" . $_SESSION['userId'] . "';";
 	$result = mysqli_query($conn, $sql);
 	
-		if($numrows = mysqli_num_rows($result) < 1){
+		if($numrows = mysqli_num_rows($result) < 1 && isset($_SESSION['taskCheck'])){
+			unset($_SESSION['taskCheck']);
 			header("Location: info.php");
 			exit();
 		}
@@ -43,41 +44,52 @@ if(!isset($_SESSION['userId'])){
 		$result2 = mysqli_query($conn, $sql2);
 	
 	//output table
-		echo "<table border ='1'>";
-		echo "<th>Overdue tasks</th>";
+		echo "<div class='overlay'>";
+		echo "<div class='centered'>";
+		echo "<div class='taskcheckcontent'>";
+		echo "<div class='appname'><h2>Welcome Back</h2></div>";
+		echo "<div class='tasktitle'>Overdue Tasks</div>";
 	//loop for overdue tasks
 	if($numrows = mysqli_num_rows($result) < 1){
-		echo "<tr><td>No overdue tasks.</td></tr>";
+		echo "<div class='tasktext'>No overdue tasks.</div>";
 	}else{
 		while($row = mysqli_fetch_assoc($result)){
+			echo "<table>";	
 			echo "<tr>
-					<td>" . $row['taskName'] . "</td>
-					<td>" . $row['deadline'] . "</td>";
-					echo '	<td><form action="charView.php" method="POST">
+					<td class='tdimg'><img src='images/char-h-mini2.png'></td>
+					<td class='tdtask'>" . $row['taskName'] . "</td>
+					<td class='tddate'>[" . $row['deadline'] . "]</td>";
+					echo '	<td class="tdbutton"><form action="charView.php" method="POST">
 							<button type = "submit" name="charSelect" value="'.$row['characterId'].'">See Task</button></a>
 							</form></td></tr>';
+			echo "</table>";
 		}
 	}
 		
 	//loop for todays tasks
-		echo "<th>Todays tasks</th>";
+		echo "<div class='tasktitle'>Todays tasks</div>";
 		
 	if($numrows = mysqli_num_rows($result2) < 1){
-		echo "<tr><td>No tasks due today.</td></tr>";
-	}else{	
+		echo "<div class='tasktext'>No tasks due today.</div>";
+	}else{			
 		while($row = mysqli_fetch_assoc($result2)){
+			echo "<div class='testable'><table>";
 			echo "<tr>
-					<td>" . $row['taskName'] . "</td>
-					<td>" . $row['deadline'] . "</td>";
-					echo '	<td><form action="charView.php" method="POST">
+					<td class='tdimg'><img src='images/char-a-mini2.png'></td>
+					<td class='tdtask'>" . $row['taskName'] . "</td>
+					<td class='tddate'>[" . $row['deadline'] . "]</td>";
+					echo '	<td class="tdbutton"><form action="charView.php" method="POST">
 							<button type = "submit" name="charSelect" value="'.$row['characterId'].'">See Task</button></a>
 							</form></td></tr>';
+			echo "</table></div>";
 		}
 	}
 		
-		echo "<tr><td><button onclick='window.location.reload(true);'>Dismiss</button></td></tr>";
-	}
-		
+		echo "<button class='taskbutton' onclick='window.location.reload(true);'>Dismiss</button>";
+		echo "</div>";
+		echo "</div>";
+		echo "</div>";
+	} else{
 	//selects characterids that belong to the logged in user	
 	$sql = "
 	SELECT characterId 
@@ -89,9 +101,9 @@ if(!isset($_SESSION['userId'])){
 	
 	if($charactercheck > 0){
 	
-		echo "Your characters:";
-		echo "<br/>";
-		echo "<br/>";
+		echo "<div class='centered'>
+				<div class='profile'>
+					<div class='title'>Your Characters:</div>";
 
 //loops thru each character id that belongs to logged in user		
 		while($row = mysqli_fetch_assoc($result)){	
@@ -104,47 +116,51 @@ if(!isset($_SESSION['userId'])){
 			WHERE CharacterTable.characterId = '" . implode("','", $row) . "';
 			";
 			$result2 = mysqli_query($conn, $sql2);
-			
-			$count++;
-			echo "Character " . $count . ":";
 		
-//loop will output details of character in table
+//loop will output details of character 
 			while($row2 = mysqli_fetch_assoc($result2)){
-				echo "<table align='center' border='1'>";
-			echo "<tr>
-			<th width='180' align='left'>Character Name</th>
-			<th width='180' align='left'>Character Build</th>
-			<th width='180' align='left'>Character Level</th>
-			<th width='180' align='left'>Character HP</th>
-			<th width='180' align='left'>Character XP</th></tr>";
-
-			echo "<tr>";
-			echo "<td>" . $row2['characterName'] . "</td>";
-			echo "<td>" . $row2['build'] . "</td>";
-			echo "<td>" . $row2['characterLevel'] . "</td>";
-			echo "<td>" . $row2['currentHp'] . "</td>";
-			echo "<td>" . $row2['xp'] . "</td>";
-			
-			echo "</tr>";
-			echo "</table>";
-			
-			$id = $row2['characterId'];
-			echo '
-			<form action="charView.php" method="POST">
-			<button type = "submit" name="charSelect" value="'.$id.'">See Character</button></a>
-			</form>';
-			echo "<br />";
+				echo "
+				<div class='charholder'>
+					<div class='charhead'>
+						<h2>" . $row2['characterName'] . "</h2>
+						<h2 class='level'>Level: " . $row2['characterLevel'] . "</h2>
+					</div>
+					<div class='charimg'>
+						<img src='images/builds/" . $row2['build'] . "'>
+					</div>
+					<div class='charstats'>
+						<div class='hp'>
+							<h2>HP:</h2>
+							<h2 class='level'>" . $row2['currentHp'] . "</h2>
+						</div>
+						<div class='xp'>
+							<h2>XP:</h2>
+							<h2 class='level'>" . $row2['xp'] . "</h2>
+						</div>";
+						
+						$id = $row2['characterId'];
+					
+					echo'
+						<div class="charbutton">
+							<form action="charView.php" method="POST">
+								<button class="taskbutton" type = "submit" name="charSelect" value="'.$id.'">See Character</button>
+							</form>
+						</div>
+					</div>
+					</div>';
+					
+					
 			}
 		}
 	} else{
-		echo "You have no characters.";
+		echo "<div class='centered'><div class='title'>Create A Character:</div></div>";
 	}
 	if($charactercheck >= 0 && $charactercheck < 4){
-		echo "Create a character:";
-
+//end of profile and centered divs
+		echo "</div></div>";
 
 ?>
-
+<div class="createcharacter">
 	<form action="includes/addCharacter.php" method="POST">
 
 		<p class="label">Character Name</p>
@@ -156,7 +172,8 @@ if(!isset($_SESSION['userId'])){
 		<button type="submit" name="submit" class="buttonspin">Create</button>
 		
 	</form>
-
+</div>
 <?php
+	}
 	}
 }

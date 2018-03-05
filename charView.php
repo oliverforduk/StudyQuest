@@ -35,11 +35,12 @@ if($todayDate > $taskDate){
 
 	include_once 'header.php';
 	
+
 //Displays confirmation message if a task has been completed
 	if(isset($_SESSION['messageConfirm'])){
 		echo "Last completed Task:";
-		echo "<br/>";
-		echo $_SESSION['messageConfirm'];
+		//echo "<br/>";
+		//echo $_SESSION['messageConfirm'];
 		unset($_SESSION['messageConfirm']);
 	}
 
@@ -52,7 +53,7 @@ if($todayDate > $taskDate){
 
 //character table output
 	while($row = mysqli_fetch_assoc($result)){
-			
+		//variable used to determine if a character can be set tasks
 		$currentHp = $row['currentHp'];
 			
 		echo "<table align='center' border='1'>";
