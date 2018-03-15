@@ -24,7 +24,7 @@ if(!isset($_POST['submit'])){
 //Checks user has enough coins to purchase item
 	while($row = mysqli_fetch_assoc($result)){
 		if($row['coins'] < $price){
-			$_SESSION['messageConfirm'] = "You don't have enough coins to buy this.";
+			$_SESSION['storeerror'] = "You don't have enough coins to buy this.";
 			header("Location: ../store.php");
 			exit();
 		}else{		
@@ -35,14 +35,18 @@ if(!isset($_POST['submit'])){
 				WHERE characterId = '$characterId';";
 		$result2 = mysqli_query($conn, $sql);
 
-//Potion:
-	if($item == 'potion'){
+//Small Potion:
+	if($item == 'smallpotion'){
 		while($row2 = mysqli_fetch_assoc($result2)){
 			if($row2['currentHp'] == 100){
-				$_SESSION['messageConfirm'] = "This will have no effect.";
+				$_SESSION['storeerror'] = "This will have no effect.";
 				header("Location: ../store.php");
 				exit();
-			} 
+			}elseif($row2['currentHp'] == 0){
+				$_SESSION['storeerror'] = "Revive character first.";
+				header("Location: ../store.php");
+				exit();
+			}
 		}
 	//Adds hp to character 
 		$sql = "UPDATE CharacterDetails
@@ -65,6 +69,63 @@ if(!isset($_POST['submit'])){
 			}
 		}
 	}
+	
+	//Big Potion:
+	if($item == 'bigpotion'){
+		while($row2 = mysqli_fetch_assoc($result2)){
+			if($row2['currentHp'] == 100){
+				$_SESSION['storeerror'] = "This will have no effect.";
+				header("Location: ../store.php");
+				exit();
+			} 
+		}
+	//Adds hp to character 
+		$sql = "UPDATE CharacterDetails
+				SET currentHp = currentHp + 40
+				WHERE characterId = '$characterId';";
+		mysqli_query($conn, $sql);
+	
+	//If hp of character is over 100, reset to 100
+		$sql = "SELECT currentHp 
+				FROM CharacterDetails 
+				WHERE characterId = '$characterId';";
+		$result2 = mysqli_query($conn, $sql);
+	
+		while($row2 = mysqli_fetch_assoc($result2)){
+			if($row2['currentHp'] > 100){
+				$sql = "UPDATE CharacterDetails
+						SET currentHp = 100
+						WHERE characterId = '$characterId';";
+				mysqli_query($conn, $sql);
+			}
+		}
+	}
+	
+//Revive Potion
+	if($item == 'revivepotion'){
+		while($row2 = mysqli_fetch_assoc($result2)){
+			if($row2['currentHp'] > 0){
+				$_SESSION['storeerror'] = "This will have no effect.";
+				header("Location: ../store.php");
+				exit();
+			}
+		}
+		//Adds 50 hp to character 
+		$sql = "UPDATE CharacterDetails
+				SET currentHp = currentHp + 50
+				WHERE characterId = '$characterId';";
+		mysqli_query($conn, $sql);
+			
+		}
+		
+//Special Potion
+	if($item == 'specialpotion'){
+		$sql = "UPDATE CharacterDetails
+				SET characterLevel = characterLevel + 1
+				WHERE characterId = '$characterId';";
+		mysqli_query($conn, $sql);
+	}
+	
 	}
 	
 //Updates the user's coins and redirects to store.php with confirmation message
@@ -73,7 +134,7 @@ if(!isset($_POST['submit'])){
 				SET coins = '$coins'
 				WHERE userId = '" . $userId . "';";
 		mysqli_query($conn, $sql);
-		$_SESSION['messageConfirm'] = "Item purchased and used.";
+		$_SESSION['storesuccess'] = "Item purchased and used.";
 		header("Location: ../store.php");
 	
 		}

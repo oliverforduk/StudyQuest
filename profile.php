@@ -30,14 +30,14 @@ if(!isset($_SESSION['userId'])){
 		$todayDate = date("Y-m-d");
 		
 	//selects tasks that both belong to current user and overdue
-		$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline
+		$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline, TaskDetails.characterBuild
 				FROM TaskTable LEFT JOIN TaskDetails 
 				ON TaskTable.taskId = TaskDetails.taskId
 				WHERE TaskTable.userId = '$userId' AND TaskDetails.deadline < '$todayDate' AND TaskDetails.status = 'open';";
 		$result = mysqli_query($conn, $sql);
 	
 	//selects tasks that both belong to current user and are due today
-		$sql2 = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline
+		$sql2 = "SELECT TaskTable.taskId, TaskTable.taskName, TaskTable.characterId, TaskDetails.deadline, TaskDetails.characterBuild
 				FROM TaskTable LEFT JOIN TaskDetails 
 				ON TaskTable.taskId = TaskDetails.taskId
 				WHERE TaskTable.userId = '$userId' AND TaskDetails.deadline = '$todayDate' AND TaskDetails.status = 'open';";
@@ -56,7 +56,7 @@ if(!isset($_SESSION['userId'])){
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<table>";	
 			echo "<tr>
-					<td class='tdimg'><img src='images/char-h-mini2.png'></td>
+					<td class='tdimg'><img src='images/builds/" . $row['characterBuild'] . "mini.png'></td>
 					<td class='tdtask'>" . $row['taskName'] . "</td>
 					<td class='tddate'>[" . $row['deadline'] . "]</td>";
 					echo '	<td class="tdbutton"><form action="charView.php" method="POST">
@@ -75,7 +75,7 @@ if(!isset($_SESSION['userId'])){
 		while($row = mysqli_fetch_assoc($result2)){
 			echo "<div class='testable'><table>";
 			echo "<tr>
-					<td class='tdimg'><img src='images/char-a-mini2.png'></td>
+					<td class='tdimg'><img src='images/builds/" . $row['characterBuild'] . "mini.png'></td>
 					<td class='tdtask'>" . $row['taskName'] . "</td>
 					<td class='tddate'>[" . $row['deadline'] . "]</td>";
 					echo '	<td class="tdbutton"><form action="charView.php" method="POST">
@@ -102,7 +102,6 @@ if(!isset($_SESSION['userId'])){
 	if($charactercheck > 0){
 	
 		echo "<div class='centered'>
-				<div class='profile'>
 					<div class='title'>Your Characters:</div>";
 
 //loops thru each character id that belongs to logged in user		
@@ -126,7 +125,7 @@ if(!isset($_SESSION['userId'])){
 						<h2 class='level'>Level: " . $row2['characterLevel'] . "</h2>
 					</div>
 					<div class='charimg'>
-						<img src='images/builds/" . $row2['build'] . "'>
+						<img src='images/builds/" . $row2['build'] . "full.png'>
 					</div>
 					<div class='charstats'>
 						<div class='hp'>
@@ -152,28 +151,54 @@ if(!isset($_SESSION['userId'])){
 					
 			}
 		}
+		
 	} else{
-		echo "<div class='centered'><div class='title'>Create A Character:</div></div>";
+		echo "<div class='centered'>";
 	}
 	if($charactercheck >= 0 && $charactercheck < 4){
-//end of profile and centered divs
-		echo "</div></div>";
 
 ?>
-<div class="createcharacter">
-	<form action="includes/addCharacter.php" method="POST">
 
-		<p class="label">Character Name</p>
-		<input type="text" name="characterName" placeholder="character name">
-									
-		<p class="label">Build</p>
-		<input type="text" name="characterBuild" placeholder="Build type">
-								
-		<button type="submit" name="submit" class="buttonspin">Create</button>
-		
-	</form>
-</div>
+	<div class="charactercreation">
+		<div class="title">Create A Character</div>
+			
+		<div class="imgholder">
+			<img id="charimg" src="images/builds/char-a-full.png"/>
+		</div>
+			
+		<div class="divider"></div>
+			
+		<div class="inputholder">	
+		<form action="includes/addCharacter.php" method="POST">
+			<div class="inputlabel">Your Character's Name</div>
+			<input type="text" name="characterName" placeholder="Character name" maxlength="18">
+			
+			<div class="inputlabel">Your Character's Build</div>
+				<select name="characterBuild" onChange="charDropDown('charimg', this.value)">
+					<option value="char-a-">Char A</option>
+					<option value="char-b-">Char B</option>
+					<option value="char-c-">Char C</option>
+					<option value="char-d-">Char D</option>
+					<option value="char-e-">Char E</option>
+					<option value="char-f-">Char F</option>
+					<option value="char-g-">Char G</option>
+					<option value="char-h-">Char H</option>
+				</select> 
+		</div>
+			
+		<div class="divider"></div>
+			
+		<div class="createbuttonholder">
+			<button type="submit" name="submit">Create</button>
+				</form>
+		</div>
+	</div>
+
 <?php
 	}
 	}
+	
+	//end of centered div (move to footer file)
+	echo "</div>";
+	
 }

@@ -99,9 +99,13 @@ if(isset($_POST['taskSelect'])){
 			WHERE userId = '$userId';";
 	mysqli_query($conn, $sql);
 	
-	//constructs a confirmation message using vars to output on character view page	
-	$_SESSION['messageConfirm'] = "Task: " . $taskName . ", Status: task completed within time, HP gained, XP gained: " . $xp . ", coins gained: " . $coins . ".";
-
+	//Sets session variables for the charview last task completed
+	$_SESSION['confirmTask'] = $taskName;
+	$_SESSION['confirmStatus'] = "On Time";
+	$_SESSION['confirmHp'] = "Up";
+	$_SESSION['confirmXp'] = "+ " . $xp;
+	$_SESSION['confirmCoins'] = "+ " . $coins;
+	
 	}else{
 	//Task overdue
 	
@@ -126,8 +130,12 @@ if(isset($_POST['taskSelect'])){
 		}
 	}
 	
-	//constructs a confirmation message using vars to output on character view page	
-	$_SESSION['messageConfirm'] = "Task: " . $taskName . ", Status: task not completed on time, HP lost, XP gained: 0, coins gained: 0.";
+	//Sets session variables for the charview last task completed
+	$_SESSION['confirmTask'] = $taskName;
+	$_SESSION['confirmStatus'] = "Overdue";
+	$_SESSION['confirmHp'] = "Down";
+	$_SESSION['confirmXp'] = "0";
+	$_SESSION['confirmCoins'] = "0";
 	
 	}
 	

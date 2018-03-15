@@ -16,6 +16,7 @@ if(!isset($_POST['submit'])){
 	$taskDate = mysqli_real_escape_string($conn, $_POST['taskDate']);
 	$taskDifficulty = mysqli_real_escape_string($conn, $_POST['taskDifficulty']);
 	$taskPriority = mysqli_real_escape_string($conn, $_POST['taskPriority']);
+	$characterBuild = mysqli_real_escape_string($conn, $_POST['characterBuild']);
 	
 	if (empty($taskName) || empty($taskDate)){
 		$_SESSION['errorMessage'] = "Please complete form.";
@@ -29,7 +30,7 @@ if(!isset($_POST['submit'])){
 		
 		$id = mysqli_insert_id($conn);
 		
-		$sql = "INSERT INTO TaskDetails (taskId, deadline, difficulty, priority) VALUES ('$id', '$taskDate', '$taskDifficulty', '$taskPriority');";
+		$sql = "INSERT INTO TaskDetails (taskId, deadline, difficulty, priority, characterBuild) VALUES ('$id', '$taskDate', '$taskDifficulty', '$taskPriority', '$characterBuild');";
 		mysqli_query($conn, $sql);
 		
 		//updating a confirmation message

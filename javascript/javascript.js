@@ -12,3 +12,8 @@ function buttonanim(){
 		$("#subbutton").addClass("buttonfull");
 	}, 850);
 }
+
+/*Changes the image displayed on the character creation based on select option*/
+function charDropDown(imgid, newimg){
+			document.getElementById(imgid).src = "images/builds/" + newimg + "full.png";
+		}

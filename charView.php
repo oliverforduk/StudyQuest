@@ -36,12 +36,13 @@ if($todayDate > $taskDate){
 	include_once 'header.php';
 	
 
-//Displays confirmation message if a task has been completed
-	if(isset($_SESSION['messageConfirm'])){
-		echo "Last completed Task:";
-		//echo "<br/>";
-		//echo $_SESSION['messageConfirm'];
-		unset($_SESSION['messageConfirm']);
+//Sets variables for use in the last task output
+	if(isset($_SESSION['confirmTask'])){
+		$confirmTask = $_SESSION['confirmTask'];
+		$confirmStatus = $_SESSION['confirmStatus'];
+		$confirmHp = $_SESSION['confirmHp'];
+		$confirmXp = $_SESSION['confirmXp'];
+		$confirmCoins = $_SESSION['confirmCoins'];
 	}
 
 //selects the character attributes of the selected character using characterId passed from profile.php using form
@@ -53,26 +54,114 @@ if($todayDate > $taskDate){
 
 //character table output
 	while($row = mysqli_fetch_assoc($result)){
-		//variable used to determine if a character can be set tasks
+		//variable used to determine if a character can be set tasks (hp must be higher than 0)
 		$currentHp = $row['currentHp'];
+		//Variable used to add a character build to the task output
+		$characterBuild = $row['build'];
 			
-		echo "<table align='center' border='1'>";
-		echo "<tr>
-			<th width='180' align='left'>Character Name</th>
-			<th width='180' align='left'>Character Build</th>
-			<th width='180' align='left'>Character Level</th>
-			<th width='180' align='left'>Character HP</th>
-			<th width='180' align='left'>Character XP</th></tr>";
-
-		echo "<tr>";
-		echo "<td>" . $row['characterName'] . "</td>";
-		echo "<td>" . $row['build'] . "</td>";
-		echo "<td>" . $row['characterLevel'] . "</td>";
-		echo "<td>" . $row['currentHp'] . "</td>";
-		echo "<td>" . $row['xp'] . "</td>";
+		echo"
+			<div class='centered'>
+				<div class='page'>
+					<div class='title'>" . $row['characterName'] . "'s Tasks</div>
+				</div>
+	<!--Character output-->
+				<div class='charholder'>
+					<div class='charhead'>
+						<h2>" . $row['characterName'] . "</h2>
+						<h2 class='level'>Level: " . $row['characterLevel'] . "</h2>
+					</div>
+					<div class='charimg'>
+						<img src='images/builds/" . $row['build'] . "full.png'>
+					</div>
+					<div class='charstats'>
+						<div class='hp'>
+							<h2>HP:</h2>
+							<h2 class='level'>" . $row['currentHp'] . "</h2>
+						</div>
+						<div class='xp'>
+							<h2>XP:</h2>
+							<h2 class='level'>" . $row['xp'] . "</h2>
+						</div>
+						<div class='charbutton'>
+							<a href='profile.php'><button class='taskbutton'>Back to Profile</button></a>
+						</div>
+					</div>
+				</div>
+				
+	<!--Last Completed Task output-->			
+				<div class='lasttask'>
+					<div class='lasttaskhead'>
+						<h2>Last Task Completed</h2>
+					</div>
 					
-		echo "</tr>";
-		echo "</table>";
+					<div class='resultholder'>	
+						<div class='name'>Task:</div>
+						<div class='resultname'>" . $confirmTask . "</div>
+						
+						<div class='name'>Status:</div>
+						<div class='result'>" . $confirmStatus . "</div>
+
+						<div class='name'>HP:</div>
+						<div class='result'>" . $confirmHp . "</div>
+						
+						<div class='name'>XP:</div>
+						<div class='result'>" . $confirmXp . "</div>
+					
+						<div class='name'>Coins:</div>
+						<div class='result'>" . $confirmCoins . "</div>
+					</div>
+				</div>
+				
+	<!--Add task form-->";
+		if($currentHp > 0){
+
+?>	
+		<div class="taskadd">
+			<div class="title">Add A Task</div>
+			
+			<div class="taskaddform">
+				<form action="includes/addTask.php" method="POST">
+
+				<div class="taskholder">
+					<input type="text" name="taskName" placeholder="Add a new task" maxlength="90">
+				</div>
+
+				<div class="dateholder">
+					<div class="tasklabel">Deadline</div>
+					<input type="date" min="<?php echo date("Y-m-d"); ?>" name="taskDate">
+				</div>
+
+				<div class="selectholder">
+					<div class="tasklabel">Difficulty</div>
+					<select name="taskDifficulty">
+						<option value="easy">Easy</option>
+						<option value="medium">Medium</option>
+						<option value="hard">Hard</option>
+					</select>
+				</div>
+
+				<div class="selectholder">
+					<div class="tasklabel">Priority</div>
+					<select name="taskPriority">
+						<option value="normal">Normal</option>
+						<option value="high">High</option>
+					</select>
+				</div>
+				
+				 <input type="hidden" name="characterBuild" value="<?php echo $characterBuild; ?>"> 
+				
+				<button type="submit" name="submit">Add Task</button>
+				
+				</form>
+			</div>
+		</div>
+<?php
+		} else{
+			echo "	<div class='taskadd'>
+						<div class='title'>Restore character's HP to add a new task.</div>
+					</div>";
+		}
+		
 	}
 		
 //selects the tasks tied to the selected character
@@ -80,43 +169,69 @@ if($todayDate > $taskDate){
 				FROM TaskTable LEFT JOIN TaskDetails 
 				ON TaskTable.taskId = TaskDetails.taskId
 				WHERE TaskTable.characterId = '". $_SESSION['charSelect'] . "' AND TaskDetails.status = 'open'
-				ORDER BY TaskDetails.priority ASC;";
+				ORDER BY TaskDetails.priority ASC, TaskTable.taskId ASC;";
 	$result = mysqli_query($conn, $sql);
 
-		echo "Tasks for this character:";
+//Current tasks output		
 
-//task table output		
-		echo "<table align='center' border='1'>";
-		echo "<tr>
-				<th width='180' align='left'>Task Name</th>
-				<th width='180' align='left'>Task Deadline</th>
-				<th width='180' align='left'>Task Difficulty</th>
-				<th width='180' align='left'>Task Priority</th>
-				<th width='180' align='left'>Complete</th></tr>";
+	echo'	<div class="currenttasks">
+				<div class="title">Current Tasks</div>
+	
+					<div class="currenttasksholder">';
 
 //while loop outputs a row for each task fetched				
 		while($row = mysqli_fetch_assoc($result)){
 
 			$task = $row['taskId'];
-			echo "<tr>";
-			echo "<td>" . $row['taskName'] . "</td>";
-			echo "<td>" . $row['deadline'] . "</td>";
-			echo "<td>" . $row['difficulty'] . "</td>";
-			echo "<td>" . $row['priority'] . "</td>";
-			echo '<td><form action="includes/completeTask.php" method="POST">
-			<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
-			</form></td>';
+			
+			echo"	<div class='currenttasksoutput'>
+						<div class='taskholder'>
+							<div class='taskname'>" . $row['taskName'] . "</div>
+						</div>
+					
+						<div class='dateholder'>
+							<div class='tasklabel'>Deadline</div>
+							<div class='taskdetails'>" . $row['deadline'] . "</div>
+						</div>
+					
+						<div class='selectholder'>
+							<div class='tasklabel'>Difficulty</div>
+							<div class='taskdetails'>" . $row['difficulty'] . "</div>
+						</div>
+					
+						<div class='selectholder'>
+							<div class='tasklabel'>Priority</div>
+							<div class='taskdetails'>" . $row['priority'] . "</div>
+						</div>
+						
+						<div class='buttonholder'>";
+						
+			echo'		<form action="includes/completeTask.php" method="POST">
+							<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+						</form>
+					</div>
+				</div>';
 		}
 		
-		echo "</tr>";
-		echo "</table>";
-		
+			if($numrows = mysqli_num_rows($result) < 1){
+				echo "	<div class='currenttasksoutput'>
+							<div class='notasks'>No current Tasks</div>
+						</div>";
+			}
+			
+	//End of currenttasks, currenttasksholder, and centered. (and fullpage)
+	echo "		</div> 
+			</div>
+		</div>";
 	} 
-	
+
+	//pretty sure everything below here is useless (it does contain the calling for the last task output though)
 	if($currentHp > 0){
 ?>
 
 <!-- form for adding a task to the selected character -->
+<!--charview div to seperate(delete soon)-->
+<div class="charview">
 	<form action="includes/addTask.php" method="POST">
 
 		<p class="label">Task:</p>
@@ -144,9 +259,12 @@ if($todayDate > $taskDate){
 	
 <?php
 	echo "Session Task Log:";
-	echo "<br/>";
 	echo $_SESSION['taskLog'];
+	echo "</div>";
+	//end of charview
 	
 	}else{
 		echo "Tasks cannot be added to a character with no HP.";
 	}
+
+		include_once 'footer.php';

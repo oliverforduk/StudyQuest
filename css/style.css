@@ -228,7 +228,7 @@
 }
 
 .centered {
-    position: fixed;
+    position: absolute; /*changed from fixed to absolute to fix scrolling issue*/
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -293,7 +293,8 @@
 
 /*Used to keep page content below header*/
 .headerback{
-	padding-bottom: 190px;
+	/*padding-bottom: 190px;*/
+	height: 190px;
 }
 
 /*--------------------------------------------------------TASKCHECK--------------------------------------------------------------*/
@@ -304,7 +305,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	/*z-index: 1;*/
 	background-color: rgba(0,0,0, 0.80);
 }
 
@@ -434,9 +435,10 @@ td.tdbutton{
 
 /*--------------------------------------------------------PAGE DIMENTIONS--------------------------------------------------------------*/
 
-.profile{
-	width: 1020px;
-	height: 100%;
+html{
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+	overflow: scroll;
 }
 
 .title{
@@ -450,6 +452,7 @@ td.tdbutton{
 	padding-top: 5px;
 	margin-right: 10px;
 	margin-left: 10px;
+	overflow: hidden;
 }
 
 /*--------------------------------------------------------PROFILE--------------------------------------------------------------*/
@@ -524,10 +527,6 @@ td.tdbutton{
 	font-weight: lighter;
 }
 
-.charbutton{
-
-}
-
 .charbutton .taskbutton{
 	width: 220px;
 	margin-left: 30px;
@@ -548,19 +547,716 @@ td.tdbutton{
 	background: #9b59b6;
 }
 
-.charbutton2{
-	display: none;
-}
-.chartable{
-	display: none;
+/*Character creation styling*/
+.charactercreation{
+	width: 1000px;
+	height: 275px;
+	margin-top: 50px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	background: #21072C;
 }
 
-.createcharacter{
-	display: none;
+.charactercreation .title{
+	margin-left: 0px;
+}
+
+.imgholder{
+	height: 230px;
+	width: 322px;
+	margin-left: 15px;
+	margin-right: -4px;
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 15px;
+	padding-left: 61px;
+}
+
+.inputholder{
+	height: 230px;
+	width: 322px;
+	margin-right: -4px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.inputlabel{
+	height: 30px;
+	width: 250px;
+	color: #fefefe;
+	text-align: center;
+	font-size: 18px;
+	font-weight: lighter;
+	padding-top: 4px;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+
+.inputholder input[type=text]{
+	height: 30px;
+	width: 250px;
+	font-size: 16px;
+	padding-left: 10px;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+
+.inputholder select{
+	height: 30px;
+	width: 250px;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+
+.createbuttonholder{
+	height: 230px;
+	width: 322px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.createbuttonholder button{
+	width: 220px;
+	margin-left: 50px;
+	margin-top: 90px;
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	height: 45px;
+	color: white;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	overflow: hidden;
+	border: solid black 1px;
+	border-top: solid #5e147d 1px;
+}
+
+.createbuttonholder button:hover{
+	background: #9b59b6;	
+}
+
+.divider{
+	height: 200px;
+	width: 2px;
+	margin-top: 15px;
+	margin-right: -5px;
+	background: #fefefe;
+	display: inline-block;
+	vertical-align: top;
 }
 
 /*--------------------------------------------------------CHARVIEW--------------------------------------------------------------*/
 
-.currenttable{
+.charview{
 	display: none;
+}
+/*last task display*/
+.lasttask{
+	width: 495px;
+	height: 275px;
+	vertical-align: top;
+	margin-top: 10px;
+	margin-right: 10px;
+	background: #21072C;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: -4px;
+	margin-bottom: 10px;
+}
+
+.lasttaskhead{
+	width: 100%;
+	height: 45px;
+	background: #5e147d;
+	color: #fefefe;
+}
+
+.lasttaskhead h2{	
+	padding-top: 8px;
+	padding-left: 8px;
+	font-size: 26px;
+	text-align: center;
+	font-weight: lighter;
+}
+
+.resultholder{
+	margin-top: 5px;
+}
+.resultname{	
+	height: 38px;
+	width: 340px;
+	margin-left: -5px;
+	margin-top: 5px;
+	background: #fefefe;
+	display: inline-block;
+	vertical-align: top;
+	
+	font-size: 22px;
+	padding-top: 6px;
+	padding-left: 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;*/
+}
+
+.name{
+	height: 38px;
+	width: 125px;
+	margin-top: 5px;
+	margin-left: 15px;
+	background: #5e147d;
+	display: inline-block;
+	
+	font-size: 22px;
+	padding-top: 6px;
+	text-align: center;
+	color: #fefefe;
+}
+
+.result{
+	height: 38px;
+	width: 340px;
+	margin-left: -5px;
+	margin-top: 5px;
+	background: #fefefe;
+	display: inline-block;
+	vertical-align: top;
+	
+	font-size: 22px;
+	padding-top: 6px;
+	padding-right: 6px;
+	text-align: right;
+}
+
+/*Task add form*/
+.taskadd{
+	width: 1000px;
+	height: 125px;
+	margin-left: 10px;
+	background: #21072C;
+}
+
+.taskadd .title{
+	margin-left: 0px;
+}
+
+.taskaddform{
+	height: 45px;
+	width: 970px;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+/*text input for task*/
+.taskholder{
+	height: 45px;
+	width: 600px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.taskaddform input[type=text]{
+	height: 100%;
+	width: 100%;
+	border: none;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*date input for task*/
+.dateholder{
+	height: 45px;
+	width: 110px;
+	display: inline-block;
+	margin-left: -6px;
+	text-align: center;
+	vertical-align: top;
+	margin-top: 0px;
+}
+
+.dateholder .tasklabel{
+	height: 50%;
+	width: 100%;
+	padding-top: 2px;
+	background: #5e147d;
+	color: #fefefe;
+	text-align: center;
+	vertical-align: top;
+}
+
+.taskaddform input[type=date]{
+	height: 50%;
+	width: 100%;
+	text-align: center;
+}
+
+/*select input for task*/
+.selectholder{
+	height: 45px;
+	width: 95px;
+	display: inline-block;
+	margin-left: -6px;
+}
+
+.selectholder .tasklabel{
+	height: 50%;
+	width: 100%;
+	padding-top: 2px;
+	background: #5e147d;
+	color: #fefefe;
+	text-align: center;
+}
+
+.taskaddform select{
+	height: 50%;
+	width: 100%;
+	text-align: center;
+}
+
+.taskaddform button{
+	height: 45px;
+	width: 76px;
+	margin-left: -6px;
+	display: inline-block;
+	vertical-align: top;
+	
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.taskaddform button:hover{
+	background: #9b59b6;
+}
+
+/*Current tasks output*/
+.currenttasks{
+	width: 1000px;
+	overflow: auto;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	background: #21072C;
+}
+
+.currenttasks .title{
+	margin-left: 0px;
+}
+
+.currenttasksholder{
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.currenttasksoutput{
+	height: 45px;
+	width: 970px;
+	margin-top: 10px;
+	margin-left: 15px;
+	/*background: #fefefe;*/
+}
+
+.taskname{
+	height: 100%;
+	width: 100%;
+	font-size: 16px;
+	padding-left: 5px;
+	padding-top: 10px;
+	background: #fefefe;
+	
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.taskdetails{
+	height: 50%;
+	width: 100%;
+	text-align: center;
+	border-left: solid 1px black;
+	background: #fefefe;
+}
+
+.buttonholder{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.currenttasks button{
+	height: 45px;
+	width: 76px;
+	margin-left: -6px;
+	display: inline-block;
+	vertical-align: top;
+	
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.currenttasks button:hover{
+	background: #9b59b6;
+}
+
+.notasks{
+	height: 100%;
+	font-size: 18px;
+	padding-top: 12px;
+	text-align: center;
+	background: #fefefe;
+}
+
+/*--------------------------------------------------------STORE--------------------------------------------------------------*/
+
+.wallet{
+	height: 125px;
+	width: 1000px;
+	margin-top: 10px;
+	background: #21072C;
+}
+
+.wallet .title{
+	margin-left: 0px;
+}
+
+.walletbody{
+	height: 45px;
+	width: 970px;
+	margin-top: 15px;
+	margin-left: 15px;
+	background: #fefefe;
+	text-align: center;
+	font-size: 22px;
+	padding-top: 10px;
+}
+
+.success .title{
+	margin-top: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background: green;
+}
+
+.error .title{
+	margin-top: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background: red;
+}
+
+.items{
+	height: 435px;
+	width: 1000px;
+	margin-top: 10px;
+	background: #21072C;
+}
+
+.items .title{
+	margin-left: 0px;
+}
+
+.item{
+	height: 79px;
+	width: 970px;
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	border: solid #5e147d 2px;
+	overflow: hidden;
+}
+
+.itemimg{
+	height: 75px;
+	width: 77px;
+	border-right: solid #5e147d 2px;
+	display: inline-block;
+	margin-right: -5px;
+}
+
+.itemdetails{
+	height: 75px;
+	width: 411px;
+	border-right: solid #5e147d 2px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -5px;
+}
+
+.itemlabel{
+	vertical-align: top;
+	height: 30px;
+	width: 100%;
+	background: #5e147d;
+	text-align: center;
+	font-size: 18px;
+	color: #fefefe;
+	padding-top: 2px;
+}
+
+.itemcontent{
+	height: 45px;
+	width: 100%;
+	background: #fefefe;
+	text-align: left;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-left: 15px;
+}
+
+.itemcontent p{
+	float: right;
+	font-size: 18px;
+	padding-right: 10px;
+}
+
+.itemprice{
+	height: 75px;
+	width: 200px;
+	border-right: solid #5e147d 2px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -5px;
+}
+
+.itempricecontent{
+	height: 45px;
+	width: 100%;
+	background: #fefefe;
+	text-align: center;
+	font-size: 18px;
+	padding-top: 10px;
+}
+
+.itemchar{
+	height: 75px;
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -5px;
+}
+
+.itemchar select{
+	height: 45px;
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+}
+
+.itembutton{
+	height: 75px;
+	width: 80px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.itembutton button{
+	height: 75px;
+	width: 80px;
+	vertical-align: top;
+	
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.itembutton button:hover{
+	background: #9b59b6;
+}
+
+/*--------------------------------------------------------OPTIONS--------------------------------------------------------------*/
+
+.charoptions{
+	width: 1000px;
+	background: #21072C;
+	margin-top: 10px;
+	margin-left: 10px;
+	overflow: auto;
+}
+
+.charoptions .title{
+	margin-left: 0px;
+}
+
+.chars{
+	height: 42px;
+	width: 970px;
+	border: solid #5e147d 1px;
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+.chars .charimg{
+	margin-top: 0px;
+	margin-left: 0px;
+	display: inline-block;
+	margin-right: -5px;
+	vertical-align: top;
+}
+
+.chars .charname{
+	height: 100%;
+	width: 808px;
+	display: inline-block;
+	margin-right: -5px;
+	background: #fefefe;
+	font-size: 20px;
+	padding-top: 10px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.chars .charbutton{
+	display: inline-block;
+	margin-right: -5px;
+}
+
+.chars .charbutton button{
+	height: 100%;
+	width: 80px;
+	/*vertical-align: top;*/
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.chars .charbutton button:hover{
+	background: #9b59b6;
+}
+
+.useremail{
+	height: 100%;
+	width: 888px;
+	display: inline-block;
+	margin-right: -5px;
+	background: #fefefe;
+	font-size: 20px;
+	padding-top: 10px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.nochars{
+	height: 42px;
+	width: 970px;
+	border: solid #5e147d 1px;
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	background: #fefefe;
+	text-align: center;
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+.optionsmessage .title{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 0px;
+	background: green;
+}
+
+/*--------------------------------------------------------Tablet Styling (900px)--------------------------------------------------------------*/
+
+@media screen and (max-width: 1099px){
+/*Header styling*/
+.header{
+	width: 800px;
+}
+
+.title{
+	width: 800px;
+}
+
+														/*profile styling*/
+/*Character output boxes*/
+.charholder{
+	display: block;
+	margin-left: 152px;
+}
+
+/*Character creation styling*/
+.charactercreation{
+	width: 800px;
+}
+
+.imgholder{
+	width: 200px;
+	padding-left: 0px;
+}
+
+.inputholder{
+	width: 280px;
+}
+
+.inputlabel{
+	margin-left: 15px;
+}
+
+.inputholder input[type=text]{
+	margin-left: 15px;
+}
+
+.inputholder select{
+	margin-left: 15px;
+}
+
+.createbuttonholder{
+	height: 230px;
+	width: 255px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.createbuttonholder button{
+	width: 220px;
+	margin-left: 50px;
+	margin-top: 90px;
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	height: 45px;
+	color: white;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	overflow: hidden;
+	border: solid black 1px;
+	border-top: solid #5e147d 1px;
+}
+
+.createbuttonholder button:hover{
+	background: #9b59b6;	
+}
+
+.divider{
+	height: 200px;
+	width: 2px;
+	margin-top: 15px;
+	margin-right: -5px;
+	background: #fefefe;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
 }
