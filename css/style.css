@@ -305,7 +305,6 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	/*z-index: 1;*/
 	background-color: rgba(0,0,0, 0.80);
 }
 
@@ -649,9 +648,6 @@ html{
 
 /*--------------------------------------------------------CHARVIEW--------------------------------------------------------------*/
 
-.charview{
-	display: none;
-}
 /*last task display*/
 .lasttask{
 	width: 495px;
@@ -752,7 +748,7 @@ html{
 /*text input for task*/
 .taskholder{
 	height: 45px;
-	width: 600px;
+	width: 598px;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -986,7 +982,7 @@ html{
 
 .itemdetails{
 	height: 75px;
-	width: 411px;
+	width: 410px;
 	border-right: solid #5e147d 2px;
 	display: inline-block;
 	vertical-align: top;
@@ -1175,7 +1171,7 @@ html{
 	background: green;
 }
 
-/*--------------------------------------------------------Tablet Styling (900px)--------------------------------------------------------------*/
+/*--------------------------------------------------------Tablet Styling (800px)--------------------------------------------------------------*/
 
 @media screen and (max-width: 1099px){
 /*Header styling*/
@@ -1202,6 +1198,8 @@ html{
 .imgholder{
 	width: 200px;
 	padding-left: 0px;
+	margin-right: 15px;
+	margin-left: 40px;
 }
 
 .inputholder{
@@ -1221,42 +1219,566 @@ html{
 }
 
 .createbuttonholder{
-	height: 230px;
 	width: 255px;
-	display: inline-block;
-	vertical-align: top;
 }
 
 .createbuttonholder button{
-	width: 220px;
-	margin-left: 50px;
-	margin-top: 90px;
-	border: none;
-	outline: none;
-	background: #5e147d; /*dark purple*/
-	height: 45px;
-	color: white;
-	font-size: 22px;
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
-	overflow: hidden;
-	border: solid black 1px;
-	border-top: solid #5e147d 1px;
+	margin-left: 15px;
 }
 
 .createbuttonholder button:hover{
 	background: #9b59b6;	
 }
 
-.divider{
-	height: 200px;
-	width: 2px;
-	margin-top: 15px;
-	margin-right: -5px;
+														/*taskcheck styling*/
+/*Model window*/
+.taskcheckcontent{
+    width: 800px; 
+}
+
+td.tdtask{
+	width: 425px;
+}
+
+														/*charview styling*/					
+/*last task display*/
+.lasttask{
+	display: block;
+	margin-left: 152px;
+}
+
+/*Task add form*/
+.taskadd{
+	width: 800px;
+}
+
+.taskaddform{
+	width: 770px;
+}
+
+/*text input for task*/
+.taskholder{
+	width: 400px;
+}
+
+/*Current tasks output*/
+.currenttasks{
+	width: 800px;
+}
+
+.currenttasksoutput{
+	width: 770px;
+}
+
+.taskname{
+	width: 100%;
+	font-size: 12px;
+	padding-top: 15px;
+}
+
+.notasks{
+	height: 100%;
+	font-size: 18px;
+	padding-top: 12px;
+	text-align: center;
 	background: #fefefe;
-	display: inline-block;
-	vertical-align: top;
+}				
+
+														/*options styling*/
+.charoptions{
+	width: 800px;
+}
+
+.chars{
+	width: 770px;
+}
+
+.chars .charname{
+	width: 608px;
+}
+
+.useremail{
+	width: 688px;
+}
+
+.nochars{
+	width: 770px;
+}
+
+														/*store styling*/	
+.wallet{
+	width: 800px;
 }
 
 
+.walletbody{
+	width: 770px;
+}
+
+.items{
+	width: 800px;
+}
+
+.item{
+	width: 770px;
+}
+
+.itemdetails{
+	width: 310px;
+}
+
+.itemcontent{
+	font-size: 16px;
+	padding-top: 10px;
+}
+
+.itemcontent p{
+	font-size: 14px;
+}
+
+.itemprice{
+	width: 150px;
+}
+
+.itemchar{
+	width: 150px;
+}
+							
+}
+
+/*--------------------------------------------------------Phone Styling (320px)--------------------------------------------------------------*/
+
+@media screen and (max-width: 799px){
+.title{
+	width: 320px;
+}
+														/*header/navbar styling*/
+/*Dimentions/background of header*/
+.header{
+	width: 320px;
+	height: 122px;
+}
+
+.header .appname h2{
+	font-size: 28px;
+}
+
+/*Transparent back to the navbar*/
+.nav-back{
+	width: 320px;
+	height: 66px;
+	margin-top: 5px;
+	margin-left: 0px;
+}
+
+/*List items of the navbar*/
+.nav-tabs ul{
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+.nav-tabs li{
+	width: 60px;
+	margin-right: -2px;
+
+}
+
+/*First letter of each options*/
+.nav-tabs h2{
+	font-size: 14px;
+}
+
+/*Other letters of options*/
+.nav-tabs p{
+	font-size: 12px;
+}
+
+/*Used to keep page content below header*/
+.headerback{
+	height: 132px;
+}
+
+														/*profile styling*/
+/*Character output boxes*/
+.charholder{
+	width: 310px;
+	height: 405px;
+	margin-top: 10px;
+	margin-right: 10px;
+	background: #21072C;
+	display: block;
+	margin-left: 15px;
+	margin-right: -4px;
+}
+
+.charhead{
+	height: 40px;
+}
+
+.charhead h2{
+	display: inline-block;	
+	padding-top: 5px;
+	padding-left: 8px;
+	font-size: 26px;
+	font-weight: lighter;
+}
+
+.charhead .level{
+	display: inline-block;
+	float: right;
+	padding-right: 8px;
+}
+
+.charimg{
+	display: block;
+	margin-top: 15px;
+	margin-left: 55px;
+	margin-bottom: 0px;
+}
+
+.charstats{
+	display: block;
+	float: left;
+	margin-top: 10px;
+	margin-left: 55px;
+}
+
+.hp{
+	margin-left: 0px;
+	margin-bottom: 10px;
+}
+
+.xp{
+	margin-left: 0px;
+	margin-bottom: 15px;
+}
+
+.charbutton .taskbutton{
+	width: 200px;
+	margin-left: 0px;
+}
+
+/*Character creation styling*/
+.charactercreation{
+	width: 310px;
+	height: 485px;
+	margin-left: 15px;
+}
+
+.charactercreation .title{
+	width: 310px;
+	margin-left: 0px;
+}
+
+.imgholder{
+	height: 200px;
+	width: 322px;
+	margin-left: 0px;
+	margin-top: 15px;
+	display: block;
+	padding-top: 0px;
+	padding-left: 55px;
+}
+
+.inputholder{
+	height: 160px;
+	width: 322px;
+	display: block;
+	vertical-align: top;
+}
+
+.inputlabel{
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.inputholder input[type=text]{
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.inputholder select{
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.createbuttonholder{
+	height: 45px;
+	width: 310px;
+	display: block;
+}
+
+.createbuttonholder button{
+	width: 220px;
+	margin-left: 45px;
+	margin-top: 5px;
+	height: 40px;
+	color: white;
+}
+
+.divider{
+	display: none;
+}
+														/*Task Check styling*/
+/*Model window*/
+.taskcheckcontent{
+    margin-top: 50px;
+    width: 320px;
+	max-height: 400px;
+}
+
+/*Tasks displayed*/
+.taskcheckcontent table{
+	width: 288px;
+}
+
+/*Table data width setting*/
+td.tdimg{
+	display: none;
+}
+
+td.tdtask{
+	width: 228px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+td.tddate{
+	display: none;
+}
+td.tdbutton{
+	width: 60px;
+}
+
+.taskcheckcontent table button{
+	font-size: 14px;
+}
+
+														/*CharView styling*/
+/*last task display*/
+.lasttask{
+	width: 320px;
+	height: 490px;
+	vertical-align: top;
+	margin-top: 10px;
+	margin-right: 10px;
+	background: #21072C;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: -4px;
+	margin-bottom: 10px;
+}
+
+.resultname{	
+	width: 310px;
+	margin-left: 5px;
+}
+
+.name{
+	width: 310px;
+	margin-left: 5px;
+}
+
+.result{
+	width: 310px;
+	margin-left: 5px;
+}
+
+/*Task add form*/
+.taskadd{
+	width: 320px;
+	height: 210px;
+}
+
+.taskaddform{
+	height: 135px;
+	width: 310px;
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+/*text input for task*/
+.taskholder{
+	height: 45px;
+	width: 310px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.taskaddform input[type=text]{
+	padding-left: 5px;
+}
+
+/*date input for task*/
+.dateholder{
+	margin-left: 0px;
+}
+
+/*select input for task*/
+.selectholder{
+	width: 100px;
+	margin-left: -5px;
+}
+
+.taskaddform button{
+	width: 310px;
+	margin-left: 0px;
+	display: block;
+	margin-top: 5px;
+}
+
+/*Current tasks output*/
+.currenttasks{
+	width: 320px; 
+}
+
+.currenttasksholder{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.currenttasksoutput{
+	width: 310px; 
+	height: auto;
+	margin-left: 5px;
+}
+
+.taskname{
+	height: 100%;
+	width: 100%;
+	font-size: 16px;
+	padding-left: 5px;
+	padding-top: 10px;
+	background: #fefefe;
+	
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.taskdetails{
+	height: 50%;
+	width: 100%;
+	text-align: center;
+	border-left: solid 1px black;
+	background: #fefefe;
+}
+
+.buttonholder{
+	display: block;
+}
+
+.currenttasks button{
+	height: 45px;
+	width: 310px;
+	margin-left: 0px;
+	display: block;
+}
+
+.notasks{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+														/*Options styling*/
+.charoptions{
+	width: 320px;
+}
+
+.chars{
+	width: 310px;
+	height: 82px;
+	margin-left: 5px;
+}
+
+.chars .charname{
+	height: 40px;
+	width: 230px;
+}
+
+.chars .charbutton{
+	display: block;
+	margin-right: 0px;
+}
+
+.chars .charbutton button{
+	height: 40px;
+	width: 310px;
+}
+
+.useremail{
+	height: 40px;
+	width: 310px;
+	display: block;
+}
+
+.nochars{
+	height: 42px;
+	width: 310px;
+	margin-left: 5px;
+}
+
+.optionsmessage .title{
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+														/*Store styling*/
+.wallet{
+	width: 320px;
+}
+
+.walletbody{
+	width: 310px;
+	margin-left: 5px;
+}
+
+.items{
+	height: 1028px;
+	width: 320px;
+}
+
+.item{
+	height: 227px;
+	width: 310px;
+	margin-left: 5px;
+}
+
+.itemimg{
+	height: 75px;
+	width: 77px;
+	border-right: solid #5e147d 2px;
+	display: inline-block;
+	margin-right: -5px;
+}
+
+.itemdetails{
+	width: 233px;
+}
+
+.itemcontent{
+	text-align: center;
+}
+
+.itemcontent p{
+	display: none;
+}
+
+.itemprice{
+	width: 155px;
+}
+
+.itemchar{
+	width: 155px;
+}
+
+.itembutton{
+	width: 310px;
+	display: block;
+}
+
+.itembutton button{
+	width: 310px;
+}
 }

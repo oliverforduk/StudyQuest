@@ -223,48 +223,6 @@ if($todayDate > $taskDate){
 	echo "		</div> 
 			</div>
 		</div>";
+		
+	include_once 'footer.php';
 	} 
-
-	//pretty sure everything below here is useless (it does contain the calling for the last task output though)
-	if($currentHp > 0){
-?>
-
-<!-- form for adding a task to the selected character -->
-<!--charview div to seperate(delete soon)-->
-<div class="charview">
-	<form action="includes/addTask.php" method="POST">
-
-		<p class="label">Task:</p>
-		<input type="text" name="taskName" placeholder="Task name">
-
-		<p class="label">Deadline</p>
-		<input type="date" min="<?php echo date("Y-m-d"); ?>" name="taskDate">
-
-		<p class="label">Difficulty</p>
-		<select name="taskDifficulty">
-			<option value="easy">Easy</option>
-			<option value="medium">Medium</option>
-			<option value="hard">Hard</option>
-		</select>
-
-		<p class="label">Priority</p>
-		<select name="taskPriority">
-			<option value="normal">Normal</option>
-			<option value="high">High</option>
-		</select>
-		
-		<button type="submit" name="submit" class="buttonspin">Add Task</button>
-		
-	</form>
-	
-<?php
-	echo "Session Task Log:";
-	echo $_SESSION['taskLog'];
-	echo "</div>";
-	//end of charview
-	
-	}else{
-		echo "Tasks cannot be added to a character with no HP.";
-	}
-
-		include_once 'footer.php';
