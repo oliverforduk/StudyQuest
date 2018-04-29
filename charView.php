@@ -163,6 +163,20 @@ if($todayDate > $taskDate){
 		}
 		
 	}
+	
+	//message to confirm task creation or error for missing fields
+	if(isset($_SESSION['charactersuccess'])){
+		echo"	<div class='charactersuccess'>
+					<div class='title'>" . $_SESSION['charactersuccess'] . "</div>
+				</div>";
+		unset($_SESSION['charactersuccess']);
+	}
+	if(isset($_SESSION['charactererror'])){
+		echo"	<div class='charactererror'>
+					<div class='title'>" . $_SESSION['charactererror'] . "</div>
+				</div>";
+		unset($_SESSION['charactererror']);
+	}
 		
 //selects the tasks tied to the selected character
 	$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
@@ -223,6 +237,6 @@ if($todayDate > $taskDate){
 	echo "		</div> 
 			</div>
 		</div>";
-		
+	unset($_SESSION['taskSelect']);
 	include_once 'footer.php';
 	} 

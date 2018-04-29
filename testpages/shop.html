@@ -1,38 +1,15 @@
-<?php
-session_start();
-
-if(!isset($_SESSION['userId'])){
-	header("Location: index.php");
-	exit();
-} else{
-	
-	include 'includes/dbConnect.php';
-	include_once 'header.php';	
-	
-	//select and store users coins
-		$sql = "SELECT coins
-				FROM UserAccount
-				WHERE userId = '". $_SESSION['userId'] . "';";
-		$result = mysqli_query($conn, $sql);
-		
-		while($row = mysqli_fetch_assoc($result)){
-			$coins = $row['coins'];
-		}
-	
-	//select character names and Ids 
-	$sql = "SELECT characterId, characterName
-			FROM CharacterTable
-			WHERE userId = '". $_SESSION['userId'] . "'
-			ORDER BY characterId;";	
-	$result = mysqli_query($conn, $sql);
-	?>
-	<!--item form (item info, character select & posts itemPrice and CharacterId to buy.php)-->
-	<div class="centered">
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="javascript/javascript.js"></script>
+	</head>
+<body>
+<div class="centered">
 
 	<div class="wallet">
 		<div class="title">Your Wallet</div>
 		
-		<div class="walletbody"><?php echo $coins ?> Coins</div>
+		<div class="walletbody"><?php echo $coins ?></div>
 	</div>
 	
 	<!--Item 1 (small potion ('smallpotion', '500'))-->
@@ -98,7 +75,6 @@ if(!isset($_SESSION['userId'])){
 				<div class="itemlabel">Item For:</div>
 					<select name='charSelect'>
 						<?php
-							$result = mysqli_query($conn, $sql);
 							while($row = mysqli_fetch_assoc($result)){
 								$row = "<option value=" . $row['characterId'] . ">" . $row['characterName'] . "</option>";
 								echo $row;
@@ -136,7 +112,6 @@ if(!isset($_SESSION['userId'])){
 				<div class="itemlabel">Item For:</div>
 					<select name='charSelect'>
 						<?php
-							$result = mysqli_query($conn, $sql);
 							while($row = mysqli_fetch_assoc($result)){
 								$row = "<option value=" . $row['characterId'] . ">" . $row['characterName'] . "</option>";
 								echo $row;
@@ -174,7 +149,6 @@ if(!isset($_SESSION['userId'])){
 				<div class="itemlabel">Item For:</div>
 					<select name='charSelect'>
 						<?php
-							$result = mysqli_query($conn, $sql);
 							while($row = mysqli_fetch_assoc($result)){
 								$row = "<option value=" . $row['characterId'] . ">" . $row['characterName'] . "</option>";
 								echo $row;
@@ -191,28 +165,8 @@ if(!isset($_SESSION['userId'])){
 		
 		
 	</div>
-
-
 	
-	<?php
-	//if confirmation messgae has been set by buy.php, display here
-	if(isset($_SESSION['storesuccess'])){
-		echo"	<div class='success'>
-					<div class='title'>" . $_SESSION['storesuccess'] . "</div>
-				</div>
-				</div>";
-		unset($_SESSION['storesuccess']);
-	}elseif(isset($_SESSION['storeerror'])){
-		echo"	<div class='error'>
-					<div class='title'>" . $_SESSION['storeerror'] . "</div>
-				</div>
-				</div>";
-		unset($_SESSION['storeerror']);
-	}else{
-		echo"</div>";
-	}
+</div>
 	
-	echo "	
-			</body>
-			</html>";
-}
+</body>
+</html>

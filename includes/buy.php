@@ -24,7 +24,7 @@ if(!isset($_POST['submit'])){
 //Checks user has enough coins to purchase item
 	while($row = mysqli_fetch_assoc($result)){
 		if($row['coins'] < $price){
-			$_SESSION['storeerror'] = "You don't have enough coins to buy this.";
+			$_SESSION['storeerror'] = "Insufficient funds.";
 			header("Location: ../store.php");
 			exit();
 		}else{		

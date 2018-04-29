@@ -91,11 +91,10 @@ if(!isset($_SESSION['userId'])){
 		echo "</div>";
 	} else{
 	//selects characterids that belong to the logged in user	
-	$sql = "
-	SELECT characterId 
-	FROM CharacterTable 
-	WHERE userId = '". $_SESSION['userId'] . "'
-	ORDER BY characterId;";	
+	$sql = "SELECT characterId 
+			FROM CharacterTable 
+			WHERE userId = '". $_SESSION['userId'] . "'
+			ORDER BY characterId;";	
 	$result = mysqli_query($conn, $sql);
 	$charactercheck = mysqli_num_rows($result);
 	
@@ -155,8 +154,22 @@ if(!isset($_SESSION['userId'])){
 	} else{
 		echo "<div class='centered'>";
 	}
+	
+	//message to confirm character creation or error for missing fields
+	if(isset($_SESSION['charactersuccess'])){
+		echo"	<div class='charactersuccess'>
+					<div class='title'>" . $_SESSION['charactersuccess'] . "</div>
+				</div>";
+		unset($_SESSION['charactersuccess']);
+	}
+	if(isset($_SESSION['charactererror'])){
+		echo"	<div class='charactererror'>
+					<div class='title'>" . $_SESSION['charactererror'] . "</div>
+				</div>";
+		unset($_SESSION['charactererror']);
+	}
+	
 	if($charactercheck >= 0 && $charactercheck < 4){
-
 ?>
 
 	<div class="charactercreation">

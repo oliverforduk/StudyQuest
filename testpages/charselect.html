@@ -1,0 +1,51 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="javascript/javascript.js"></script>
+	</head>
+<body>
+<div class="centered">
+	<div class="profile">
+	
+		<div class="charactercreation">
+			<div class="title">Create A Character</div>
+			
+			<div class="imgholder">
+				<img id="charimg" src="images/builds/char-a-full.png"/>
+			</div>
+			
+			<div class="divider"></div>
+			
+			<div class="inputholder">
+			
+				<div class="inputlabel">Your Character's Name</div>
+				<input type="text" name="characterName" placeholder="Character name" maxlength="18">
+			
+				<div class="inputlabel">Your Character's Build</div>
+				<form action="includes/addCharacter.php" method="POST">
+					<select name="characterBuild" onChange="charDropDown('charimg', this.value)">
+						<option value="char-a-">Char A</option>
+						<option value="char-b-">Char B</option>
+						<option value="char-c-">Char C</option>
+						<option value="char-d-">Char D</option>
+						<option value="char-e-">Char E</option>
+						<option value="char-f-">Char F</option>
+						<option value="char-g-">Char G</option>
+						<option value="char-h-">Char H</option>
+					</select> 
+			</div>
+			
+			<div class="divider"></div>
+			
+			<div class="createbuttonholder">
+					<button type="submit" name="submit">Create</button>
+				</form>
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
+	
+</body>
+</html>

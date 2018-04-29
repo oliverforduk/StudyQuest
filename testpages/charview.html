@@ -1,0 +1,311 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+<body>
+<div class="fullpage">
+	<div class="centered">
+		<div class="profile">
+		
+<div class="taskadd">
+			<div class="title">Add A Task</div>
+			
+			<div class="taskaddform">
+				<form action="includes/addTask.php" method="POST">
+
+				<div class="taskholder">
+					<input type="text" name="taskName" placeholder="Add a new task" maxlength="90">
+				</div>
+					
+				<div class="dateholder">
+					<div class="tasklabel">Deadline</div>
+					<input type="date" name="taskDate">
+				</div>
+
+				<div class="selectholder">
+					<div class="tasklabel">Difficulty</div>
+					<select name="taskDifficulty">
+						<option value="easy">Easy</option>
+						<option value="medium">Medium</option>
+						<option value="hard">Hard</option>
+					</select>
+				</div>
+
+				<div class="selectholder">
+					<div class="tasklabel">Priority</div>
+					<select name="taskPriority">
+						<option value="normal">Normal</option>
+						<option value="high">High</option>
+					</select>
+				</div>
+				
+				<button type="submit" name="submit">Add Task</button>
+				
+				</form>
+			</div>
+</div>
+
+<div class="currenttasks">
+	<div class="title">Current Tasks</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="currenttasksholder">
+		<div class="currenttasksoutput">
+			<div class="taskholder">
+				<div class="taskname">Read two chapters of Cloud Computing; A Practical Approach</div>
+			</div>
+			
+			<div class="dateholder">
+				<div class="tasklabel">Deadline</div>
+				<div class="taskdetails">07/03/2018</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Difficulty</div>
+				<div class="taskdetails">Easy</div>
+			</div>
+			
+			<div class="selectholder">
+				<div class="tasklabel">Priority</div>
+				<div class="taskdetails">Normal</div>
+			</div>
+			<div class="buttonholder">
+				<form action="includes/completeTask.php" method="POST">
+					<button type = "submit" name="taskSelect" value="'.$task.'">Complete Task</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<!--end of fullpage, centered, and profile divs-->
+</div>
+</div>
+</div>
+
+</body>
+</html>

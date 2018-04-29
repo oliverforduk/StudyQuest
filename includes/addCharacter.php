@@ -12,8 +12,8 @@ if(!isset($_POST['submit'])){
 	$characterName = mysqli_real_escape_string($conn, $_POST['characterName']);
 	$characterBuild = mysqli_real_escape_string($conn, $_POST['characterBuild']);
 	
-	if (empty($characterName || $characterBuild)){
-		$_SESSION['errorMessage'] = "Please complete form.";
+	if (empty($characterName)){
+		$_SESSION['charactererror'] = "Please complete form.";
 		header("Location: ../profile.php");
 		exit();
 		
@@ -28,7 +28,7 @@ if(!isset($_POST['submit'])){
 		$result = mysqli_query($conn, $sql);
 		
 		//updating a confirmation message
-		$_SESSION['successMessage'] = "Character created.";
+		$_SESSION['charactersuccess'] = "Character created.";
 				
 		header("Location: ../profile.php?=success");
 		exit();

@@ -18,12 +18,15 @@ if(!isset($_POST['submit'])){
 	$taskPriority = mysqli_real_escape_string($conn, $_POST['taskPriority']);
 	$characterBuild = mysqli_real_escape_string($conn, $_POST['characterBuild']);
 	
-	if (empty($taskName) || empty($taskDate)){
-		$_SESSION['errorMessage'] = "Please complete form.";
+	if (empty($taskName)){
+		$_SESSION['charactererror'] = "Add a task name.";
 		header("Location: ../charView.php?incompleteform");
-		exit();
-		
-	} else{
+		exit();		
+	}elseif (empty($taskDate)){
+		$_SESSION['charactererror'] = "Add a deadline.";
+		header("Location: ../charView.php?incompleteform");
+		exit();	
+	}else{
 		//adding to TaskTable
 		$sql = "INSERT INTO TaskTable (userId, characterId, taskName) VALUES ('$userId', '$characterId', '$taskName');";
 		mysqli_query($conn, $sql);
@@ -34,7 +37,7 @@ if(!isset($_POST['submit'])){
 		mysqli_query($conn, $sql);
 		
 		//updating a confirmation message
-		$_SESSION['successMessage'] = "Task added.";
+		$_SESSION['charactersuccess'] = "Task added.";
 		$_SESSION['taskAdded'] = "";
 				
 		header("Location: ../charView.php?=success");

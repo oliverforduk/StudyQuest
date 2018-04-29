@@ -22,7 +22,7 @@
 			<div class="nav-back">
 				<div class="nav-tabs">
 					<ul>
-						<a href="profile.php"><li><h2>C</h2><p>haracers</p></li></a>
+						<a href="profile.php"><li><h2>C</h2><p>haracters</p></li></a>
 						<a href="options.php"><li><h2>O</h2><p>ptions</p></li></a>
 						<a href="store.php"><li><h2>S</h2><p>tore</p></li></a>
 						<a href="info.php"><li><h2>T</h2><p>utorial</p></li></a>

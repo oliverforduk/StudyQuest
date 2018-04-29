@@ -1,0 +1,48 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script type="text/javascript" src="javascript/javascript.js"></script>
+	</head>
+<body>
+<div class="centered">
+
+	<div class="title">Options</div>
+	
+	<div class="charoptions">
+		<div class="title">Delete A Character</div>
+		
+		<div class="chars">
+			<div class="charimg">
+				<img src="../images/char-a-mini.png"/>
+			</div>
+			
+			<div class="charname">Character 1</div>
+			
+			<div class="charbutton">
+				<form action="includes/processOptions.php" method="POST">
+					<button type="submit" name="charDel" value="<?php echo $charId; ?>" onclick="return confirm(\'Are you sure you want to delete this character?\');">Delete</button>
+				</form>
+			</div>
+		</div>
+		
+		<div class="nochars">You have no characters</div>
+		
+	</div>
+	
+	<div class="charoptions">
+		<div class="title">Delete Your Account</div>
+		
+		<div class="chars">
+			<div class="useremail">testtest@email.com</div>
+			
+			<div class="charbutton">
+				<form action="includes/processOptions.php" method="POST">
+					<button type="submit" name="userDel" onclick="return confirm(\'Are you sure you want to delete your account?\');">Delete Account.</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

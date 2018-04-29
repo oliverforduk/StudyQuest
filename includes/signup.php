@@ -10,11 +10,15 @@ if(isset($_POST['submit'])){
 	
 	//Error handlers
 	//check for empty fields
-	if (empty($email || $password)){
+	if (empty($email)){
 		$_SESSION['errorMessage'] = "Please complete form.";
 		header("Location: ../register.php");
 		exit();
-	} else{
+	}elseif (empty($password)){
+		$_SESSION['errorMessage'] = "Please complete form.";
+		header("Location: ../register.php");
+		exit();
+	}else{
 		
 		//checks email is valid
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){

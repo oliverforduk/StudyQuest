@@ -228,7 +228,7 @@
 }
 
 .centered {
-    position: absolute; /*changed from fixed to absolute to fix scrolling issue*/
+    position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -529,6 +529,7 @@ html{
 .charbutton .taskbutton{
 	width: 220px;
 	margin-left: 30px;
+	
 	border: none;
 	outline: none;
 	background: #5e147d; /*dark purple*/
@@ -550,7 +551,7 @@ html{
 .charactercreation{
 	width: 1000px;
 	height: 275px;
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-left: 10px;
 	margin-bottom: 10px;
 	background: #21072C;
@@ -616,7 +617,7 @@ html{
 }
 
 .createbuttonholder button{
-	width: 220px;
+	width: 222px;
 	margin-left: 50px;
 	margin-top: 90px;
 	border: none;
@@ -644,6 +645,18 @@ html{
 	background: #fefefe;
 	display: inline-block;
 	vertical-align: top;
+}
+
+.charactersuccess .title{
+	margin-top: 10px;
+	margin-left: 10px;
+	background: green;
+}
+
+.charactererror .title{
+	margin-top: 10px;
+	margin-left: 10px;
+	background: red;
 }
 
 /*--------------------------------------------------------CHARVIEW--------------------------------------------------------------*/
@@ -1054,13 +1067,14 @@ html{
 	width: 80px;
 	display: inline-block;
 	vertical-align: top;
+	overflow: hidden;
 }
 
 .itembutton button{
 	height: 75px;
-	width: 80px;
+	width: 82px;
 	vertical-align: top;
-	
+	margin-right: -5px;
 	border: none;
 	outline: none;
 	background: #5e147d; /*dark purple*/
@@ -1169,6 +1183,53 @@ html{
 	margin-left: 10px;
 	margin-right: 0px;
 	background: green;
+}
+
+/*--------------------------------------------------------Info Tutorial--------------------------------------------------------*/
+.info{
+	height: 250px;
+	width: 1000px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: #21072C;
+}
+
+.infoimage{
+	height: 250px;
+	width: 250px;
+	display: inline-block;
+}
+
+.infodetails{
+	height: 250px;
+	width: 740px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 15px;
+}
+
+.info p{
+	color: #fefefe;
+	font-size: 20px;
+	height: 170px;
+}
+
+.info button{
+	height: 45px;
+	width: 400px;
+	margin-left: 170px;
+	border: none;
+	outline: none;
+	background: #5e147d; /*dark purple*/
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.info button:hover{
+	background: #9b59b6;
 }
 
 /*--------------------------------------------------------Tablet Styling (800px)--------------------------------------------------------------*/
@@ -1343,7 +1404,22 @@ td.tdtask{
 .itemchar{
 	width: 150px;
 }
-							
+														/*info styling*/	
+.info{
+	width: 800px;
+}
+
+.infodetails{
+	width: 540px;
+}
+
+.info p{
+	font-size: 18px;
+}
+
+.info button{
+	margin-left: 70px;
+}															
 }
 
 /*--------------------------------------------------------Phone Styling (320px)--------------------------------------------------------------*/
@@ -1375,12 +1451,13 @@ td.tdtask{
 .nav-tabs ul{
 	padding-top: 5px;
 	padding-left: 5px;
+	overflow: hidden;
 }
 
 .nav-tabs li{
 	width: 60px;
 	margin-right: -2px;
-
+	overflow: hidden;
 }
 
 /*First letter of each options*/
@@ -1390,7 +1467,7 @@ td.tdtask{
 
 /*Other letters of options*/
 .nav-tabs p{
-	font-size: 12px;
+	font-size: 10px;
 }
 
 /*Used to keep page content below header*/
@@ -1780,5 +1857,36 @@ td.tdbutton{
 
 .itembutton button{
 	width: 310px;
+}
+
+														/*info styling*/	
+.info{
+	height: 540px;
+	width: 320px;
+}
+
+.infoimage{
+	height: 260px;
+	width: 320px;
+	background: #fefefe;
+	display: block;
+	padding-left: 35px;
+}
+
+.infodetails{
+	height: 400px;
+	width: 320px;
+	display: block;
+	padding: 10px;
+}
+
+.info p{
+	font-size: 16px;
+	height: 220px;
+}
+
+.info button{
+	width: 320px;
+	margin-left: -10px;
 }
 }

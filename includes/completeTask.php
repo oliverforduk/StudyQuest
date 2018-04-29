@@ -8,6 +8,12 @@ if(isset($_POST['taskSelect'])){
 	$_SESSION['taskSelect'] = $_POST['taskSelect'];
 }
 
+//Access to the page granted if session var 'taskSelect' exisits, variable is unset within charview.php
+if(!isset($_SESSION['taskSelect'])){	
+	header("Location: ../profile.php");
+	exit();
+}else{
+
 //Selects the task attributes of the selected task
 	$sql = "SELECT TaskTable.taskId, TaskTable.taskName, TaskDetails.deadline, TaskDetails.difficulty, TaskDetails.priority
 			FROM TaskTable LEFT JOIN TaskDetails 
@@ -16,7 +22,6 @@ if(isset($_POST['taskSelect'])){
 	$result = mysqli_query($conn, $sql);
 	
 //fetches the values of those attributes
-
 	$userId = $_SESSION['userId'];
 	$characterId = $_SESSION['charSelect'];
 	
@@ -139,9 +144,6 @@ if(isset($_POST['taskSelect'])){
 	
 	}
 	
-//Updates the task log
-	$_SESSION['taskLog'] = $_SESSION['messageConfirm'] . "<br/>" . $_SESSION['taskLog'];
-	
 //Updates task (status)
 	$sql = "UPDATE TaskDetails
 			SET status = 'closed'
@@ -151,3 +153,4 @@ if(isset($_POST['taskSelect'])){
 //Sends user back to character view page
 header("Location: ../charView.php");
 exit();
+}
